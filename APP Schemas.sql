@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict emBlMN6YbmWaQZYuHiPFkozTSA6MhahIbwkbTyndSpjQxu40SgSfSMBpUjsylBi
+\restrict IdEKbbdPKEHpZTJKRztK4YxE45Vg06ZUSTZUL6JpsKbh4nlklQAZ5ryeREw6kSA
 
 -- Dumped from database version 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)
 
--- Started on 2026-03-27 23:24:17 EDT
+-- Started on 2026-03-28 16:31:17 EDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -51,7 +51,7 @@ CREATE SCHEMA records;
 ALTER SCHEMA records OWNER TO postgres;
 
 --
--- TOC entry 864 (class 1247 OID 17481)
+-- TOC entry 872 (class 1247 OID 17481)
 -- Name: view_type; Type: TYPE; Schema: locations; Owner: postgres
 --
 
@@ -64,7 +64,7 @@ CREATE TYPE locations.view_type AS ENUM (
 ALTER TYPE locations.view_type OWNER TO postgres;
 
 --
--- TOC entry 867 (class 1247 OID 17486)
+-- TOC entry 875 (class 1247 OID 17486)
 -- Name: gid; Type: TYPE; Schema: people; Owner: postgres
 --
 
@@ -78,7 +78,7 @@ CREATE TYPE people.gid AS ENUM (
 ALTER TYPE people.gid OWNER TO postgres;
 
 --
--- TOC entry 870 (class 1247 OID 17494)
+-- TOC entry 878 (class 1247 OID 17494)
 -- Name: gid9; Type: TYPE; Schema: people; Owner: postgres
 --
 
@@ -91,7 +91,7 @@ CREATE TYPE people.gid9 AS ENUM (
 ALTER TYPE people.gid9 OWNER TO postgres;
 
 --
--- TOC entry 873 (class 1247 OID 17500)
+-- TOC entry 881 (class 1247 OID 17500)
 -- Name: booking_states; Type: TYPE; Schema: records; Owner: postgres
 --
 
@@ -105,7 +105,7 @@ CREATE TYPE records.booking_states AS ENUM (
 ALTER TYPE records.booking_states OWNER TO postgres;
 
 --
--- TOC entry 876 (class 1247 OID 17508)
+-- TOC entry 884 (class 1247 OID 17508)
 -- Name: checking_states; Type: TYPE; Schema: records; Owner: postgres
 --
 
@@ -118,17 +118,153 @@ CREATE TYPE records.checking_states AS ENUM (
 ALTER TYPE records.checking_states OWNER TO postgres;
 
 --
--- TOC entry 239 (class 1255 OID 17649)
+-- TOC entry 245 (class 1255 OID 17674)
+-- Name: addhotel(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.addhotel() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		UPDATE hotel_chain set number_hotels = number_hotels + 1 where hotel_chain_id = NEW.chain_id;
+		return NEW;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.addhotel() OWNER TO postgres;
+
+--
+-- TOC entry 242 (class 1255 OID 17671)
+-- Name: addroom(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.addroom() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		UPDATE Hotel set number_rooms = number_rooms + 1 where hotel_id = NEW.hotel_id;
+		return NEW;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.addroom() OWNER TO postgres;
+
+--
+-- TOC entry 247 (class 1255 OID 17686)
+-- Name: recalculatehotels(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.recalculatehotels() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		NEW.number_hotels = (select count(*) from hotel where chain_id = NEW.hotel_chain_id);
+		return NEW;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.recalculatehotels() OWNER TO postgres;
+
+--
+-- TOC entry 246 (class 1255 OID 17685)
+-- Name: recalculaterooms(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.recalculaterooms() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		NEW.number_rooms = (select count(*) from room where hotel_id = NEW.hotel_id);
+		return NEW;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.recalculaterooms() OWNER TO postgres;
+
+--
+-- TOC entry 243 (class 1255 OID 17673)
+-- Name: removehotel(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.removehotel() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		UPDATE hotel_chain set number_hotels = number_hotels - 1 where hotel_chain_id = OLD.chain_id;
+		return OLD;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.removehotel() OWNER TO postgres;
+
+--
+-- TOC entry 244 (class 1255 OID 17672)
+-- Name: removeroom(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.removeroom() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		UPDATE Hotel set number_rooms = number_rooms - 1 where hotel_id = OLD.hotel_id;
+		return OLD;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.removeroom() OWNER TO postgres;
+
+--
+-- TOC entry 239 (class 1255 OID 17664)
+-- Name: setnumberhotels(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.setnumberhotels() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		NEW.number_hotels = 0;
+		return NEW;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.setnumberhotels() OWNER TO postgres;
+
+--
+-- TOC entry 240 (class 1255 OID 17665)
+-- Name: setnumberrooms(); Type: FUNCTION; Schema: locations; Owner: postgres
+--
+
+CREATE FUNCTION locations.setnumberrooms() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	BEGIN
+		NEW.number_rooms = 0;
+		return NEW;
+	END;
+$$;
+
+
+ALTER FUNCTION locations.setnumberrooms() OWNER TO postgres;
+
+--
+-- TOC entry 241 (class 1255 OID 17649)
 -- Name: transformrecord(); Type: FUNCTION; Schema: records; Owner: postgres
 --
 
 CREATE FUNCTION records.transformrecord() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
-begin
-	update booking_record set status = 'Transformed' where room_number = NEW.room_number and hotel_id = NEW.hotel_id and start_date = NEW.start_date;
-	return NEW;
-end;
+	begin
+		update booking_record set status = 'Transformed' where room_number = NEW.room_number and hotel_id = NEW.hotel_id and start_date = NEW.start_date;
+		return NEW;
+	end;
 $$;
 
 
@@ -148,7 +284,7 @@ CREATE TABLE locations.hotel (
     chain_id integer NOT NULL,
     manager_id integer NOT NULL,
     rating integer,
-    number_rooms integer,
+    number_rooms integer DEFAULT 0,
     name integer,
     street_number integer,
     street_name character varying(20),
@@ -170,7 +306,7 @@ ALTER TABLE locations.hotel OWNER TO postgres;
 CREATE TABLE locations.hotel_chain (
     hotel_chain_id integer NOT NULL,
     name character varying(20),
-    number_hotels integer,
+    number_hotels integer DEFAULT 0,
     street_number integer,
     street_name character varying(20),
     city character varying(20),
@@ -502,7 +638,7 @@ ALTER TABLE records.renting_records ALTER COLUMN renting_id ADD GENERATED BY DEF
 
 
 --
--- TOC entry 3555 (class 0 OID 17513)
+-- TOC entry 3573 (class 0 OID 17513)
 -- Dependencies: 217
 -- Data for Name: hotel; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -512,7 +648,7 @@ COPY locations.hotel (hotel_id, chain_id, manager_id, rating, number_rooms, name
 
 
 --
--- TOC entry 3556 (class 0 OID 17518)
+-- TOC entry 3574 (class 0 OID 17518)
 -- Dependencies: 218
 -- Data for Name: hotel_chain; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -522,7 +658,7 @@ COPY locations.hotel_chain (hotel_chain_id, name, number_hotels, street_number, 
 
 
 --
--- TOC entry 3557 (class 0 OID 17521)
+-- TOC entry 3575 (class 0 OID 17521)
 -- Dependencies: 219
 -- Data for Name: hotel_chain_email; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -532,7 +668,7 @@ COPY locations.hotel_chain_email (chain_id, chain_email) FROM stdin;
 
 
 --
--- TOC entry 3558 (class 0 OID 17524)
+-- TOC entry 3576 (class 0 OID 17524)
 -- Dependencies: 220
 -- Data for Name: hotel_chain_phone; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -542,7 +678,7 @@ COPY locations.hotel_chain_phone (chain_id, chain_phone) FROM stdin;
 
 
 --
--- TOC entry 3559 (class 0 OID 17527)
+-- TOC entry 3577 (class 0 OID 17527)
 -- Dependencies: 221
 -- Data for Name: hotel_email; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -552,7 +688,7 @@ COPY locations.hotel_email (id, email) FROM stdin;
 
 
 --
--- TOC entry 3560 (class 0 OID 17530)
+-- TOC entry 3578 (class 0 OID 17530)
 -- Dependencies: 222
 -- Data for Name: hotel_phone; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -562,7 +698,7 @@ COPY locations.hotel_phone (id, phone) FROM stdin;
 
 
 --
--- TOC entry 3561 (class 0 OID 17533)
+-- TOC entry 3579 (class 0 OID 17533)
 -- Dependencies: 223
 -- Data for Name: room; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -572,7 +708,7 @@ COPY locations.room (room_number, hotel_id, price, capacity, view_type, is_etend
 
 
 --
--- TOC entry 3562 (class 0 OID 17538)
+-- TOC entry 3580 (class 0 OID 17538)
 -- Dependencies: 224
 -- Data for Name: room_amenities; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -582,7 +718,7 @@ COPY locations.room_amenities (room_number, hotel_id, amenity) FROM stdin;
 
 
 --
--- TOC entry 3563 (class 0 OID 17541)
+-- TOC entry 3581 (class 0 OID 17541)
 -- Dependencies: 225
 -- Data for Name: room_problems; Type: TABLE DATA; Schema: locations; Owner: postgres
 --
@@ -592,7 +728,7 @@ COPY locations.room_problems (room_number, hotel_id, problem) FROM stdin;
 
 
 --
--- TOC entry 3564 (class 0 OID 17544)
+-- TOC entry 3582 (class 0 OID 17544)
 -- Dependencies: 226
 -- Data for Name: customer; Type: TABLE DATA; Schema: people; Owner: postgres
 --
@@ -602,7 +738,7 @@ COPY people.customer (customer_id, first_name, middle_name, last_name, street_nu
 
 
 --
--- TOC entry 3565 (class 0 OID 17548)
+-- TOC entry 3583 (class 0 OID 17548)
 -- Dependencies: 227
 -- Data for Name: employee; Type: TABLE DATA; Schema: people; Owner: postgres
 --
@@ -612,7 +748,7 @@ COPY people.employee (employee_id, chain_id, hotel_id, first_name, middle_name, 
 
 
 --
--- TOC entry 3566 (class 0 OID 17552)
+-- TOC entry 3584 (class 0 OID 17552)
 -- Dependencies: 228
 -- Data for Name: employee_role; Type: TABLE DATA; Schema: people; Owner: postgres
 --
@@ -622,7 +758,7 @@ COPY people.employee_role (id, roles) FROM stdin;
 
 
 --
--- TOC entry 3567 (class 0 OID 17555)
+-- TOC entry 3585 (class 0 OID 17555)
 -- Dependencies: 229
 -- Data for Name: booking_records; Type: TABLE DATA; Schema: records; Owner: postgres
 --
@@ -632,7 +768,7 @@ COPY records.booking_records (booking_id, room_number, hotel_id, customer_id, st
 
 
 --
--- TOC entry 3568 (class 0 OID 17558)
+-- TOC entry 3586 (class 0 OID 17558)
 -- Dependencies: 230
 -- Data for Name: renting_records; Type: TABLE DATA; Schema: records; Owner: postgres
 --
@@ -642,7 +778,7 @@ COPY records.renting_records (renting_id, room_number, hotel_id, customer_id, em
 
 
 --
--- TOC entry 3582 (class 0 OID 0)
+-- TOC entry 3600 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: hotel_chain_email_chain_id_seq; Type: SEQUENCE SET; Schema: locations; Owner: postgres
 --
@@ -651,7 +787,7 @@ SELECT pg_catalog.setval('locations.hotel_chain_email_chain_id_seq', 1, false);
 
 
 --
--- TOC entry 3583 (class 0 OID 0)
+-- TOC entry 3601 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: hotel_chain_hotel_chain_id_seq; Type: SEQUENCE SET; Schema: locations; Owner: postgres
 --
@@ -660,7 +796,7 @@ SELECT pg_catalog.setval('locations.hotel_chain_hotel_chain_id_seq', 1, false);
 
 
 --
--- TOC entry 3584 (class 0 OID 0)
+-- TOC entry 3602 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: hotel_hotel_id_seq; Type: SEQUENCE SET; Schema: locations; Owner: postgres
 --
@@ -669,7 +805,7 @@ SELECT pg_catalog.setval('locations.hotel_hotel_id_seq', 1, false);
 
 
 --
--- TOC entry 3585 (class 0 OID 0)
+-- TOC entry 3603 (class 0 OID 0)
 -- Dependencies: 234
 -- Name: room_room_number_seq; Type: SEQUENCE SET; Schema: locations; Owner: postgres
 --
@@ -678,7 +814,7 @@ SELECT pg_catalog.setval('locations.room_room_number_seq', 1, false);
 
 
 --
--- TOC entry 3586 (class 0 OID 0)
+-- TOC entry 3604 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: customer_customer_id_seq; Type: SEQUENCE SET; Schema: people; Owner: postgres
 --
@@ -687,7 +823,7 @@ SELECT pg_catalog.setval('people.customer_customer_id_seq', 1, false);
 
 
 --
--- TOC entry 3587 (class 0 OID 0)
+-- TOC entry 3605 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: employee_employee_id_seq; Type: SEQUENCE SET; Schema: people; Owner: postgres
 --
@@ -696,7 +832,7 @@ SELECT pg_catalog.setval('people.employee_employee_id_seq', 1, false);
 
 
 --
--- TOC entry 3588 (class 0 OID 0)
+-- TOC entry 3606 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: booking_records_booking_id_seq; Type: SEQUENCE SET; Schema: records; Owner: postgres
 --
@@ -705,7 +841,7 @@ SELECT pg_catalog.setval('records.booking_records_booking_id_seq', 1, false);
 
 
 --
--- TOC entry 3589 (class 0 OID 0)
+-- TOC entry 3607 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: renting_records_renting_id_seq; Type: SEQUENCE SET; Schema: records; Owner: postgres
 --
@@ -714,7 +850,7 @@ SELECT pg_catalog.setval('records.renting_records_renting_id_seq', 1, false);
 
 
 --
--- TOC entry 3375 (class 2606 OID 17562)
+-- TOC entry 3385 (class 2606 OID 17562)
 -- Name: hotel_chain_email hotel_chain_email_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -723,7 +859,7 @@ ALTER TABLE ONLY locations.hotel_chain_email
 
 
 --
--- TOC entry 3377 (class 2606 OID 17564)
+-- TOC entry 3387 (class 2606 OID 17564)
 -- Name: hotel_chain_phone hotel_chain_phone_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -732,7 +868,7 @@ ALTER TABLE ONLY locations.hotel_chain_phone
 
 
 --
--- TOC entry 3373 (class 2606 OID 17566)
+-- TOC entry 3383 (class 2606 OID 17566)
 -- Name: hotel_chain hotel_chain_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -741,7 +877,7 @@ ALTER TABLE ONLY locations.hotel_chain
 
 
 --
--- TOC entry 3379 (class 2606 OID 17568)
+-- TOC entry 3389 (class 2606 OID 17568)
 -- Name: hotel_email hotel_email_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -750,7 +886,7 @@ ALTER TABLE ONLY locations.hotel_email
 
 
 --
--- TOC entry 3369 (class 2606 OID 17570)
+-- TOC entry 3379 (class 2606 OID 17570)
 -- Name: hotel hotel_hotel_id_key; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -759,7 +895,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3381 (class 2606 OID 17572)
+-- TOC entry 3391 (class 2606 OID 17572)
 -- Name: hotel_phone hotel_phone_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -768,7 +904,7 @@ ALTER TABLE ONLY locations.hotel_phone
 
 
 --
--- TOC entry 3371 (class 2606 OID 17574)
+-- TOC entry 3381 (class 2606 OID 17574)
 -- Name: hotel hotel_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -777,7 +913,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3385 (class 2606 OID 17576)
+-- TOC entry 3395 (class 2606 OID 17576)
 -- Name: room_amenities room_amenities_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -786,7 +922,7 @@ ALTER TABLE ONLY locations.room_amenities
 
 
 --
--- TOC entry 3383 (class 2606 OID 17578)
+-- TOC entry 3393 (class 2606 OID 17578)
 -- Name: room room_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -795,7 +931,7 @@ ALTER TABLE ONLY locations.room
 
 
 --
--- TOC entry 3387 (class 2606 OID 17580)
+-- TOC entry 3397 (class 2606 OID 17580)
 -- Name: room_problems room_problems_pkey; Type: CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -804,7 +940,7 @@ ALTER TABLE ONLY locations.room_problems
 
 
 --
--- TOC entry 3389 (class 2606 OID 17582)
+-- TOC entry 3399 (class 2606 OID 17582)
 -- Name: customer customer_pkey; Type: CONSTRAINT; Schema: people; Owner: postgres
 --
 
@@ -813,7 +949,7 @@ ALTER TABLE ONLY people.customer
 
 
 --
--- TOC entry 3391 (class 2606 OID 17584)
+-- TOC entry 3401 (class 2606 OID 17584)
 -- Name: employee employee_pkey; Type: CONSTRAINT; Schema: people; Owner: postgres
 --
 
@@ -822,7 +958,7 @@ ALTER TABLE ONLY people.employee
 
 
 --
--- TOC entry 3395 (class 2606 OID 17586)
+-- TOC entry 3405 (class 2606 OID 17586)
 -- Name: employee_role employee_role_pkey; Type: CONSTRAINT; Schema: people; Owner: postgres
 --
 
@@ -831,7 +967,7 @@ ALTER TABLE ONLY people.employee_role
 
 
 --
--- TOC entry 3393 (class 2606 OID 17588)
+-- TOC entry 3403 (class 2606 OID 17588)
 -- Name: employee employee_sin_key; Type: CONSTRAINT; Schema: people; Owner: postgres
 --
 
@@ -840,7 +976,7 @@ ALTER TABLE ONLY people.employee
 
 
 --
--- TOC entry 3397 (class 2606 OID 17590)
+-- TOC entry 3407 (class 2606 OID 17590)
 -- Name: booking_records booking_records_pkey; Type: CONSTRAINT; Schema: records; Owner: postgres
 --
 
@@ -849,7 +985,7 @@ ALTER TABLE ONLY records.booking_records
 
 
 --
--- TOC entry 3399 (class 2606 OID 17592)
+-- TOC entry 3409 (class 2606 OID 17592)
 -- Name: renting_records renting_records_pkey; Type: CONSTRAINT; Schema: records; Owner: postgres
 --
 
@@ -858,7 +994,71 @@ ALTER TABLE ONLY records.renting_records
 
 
 --
--- TOC entry 3411 (class 2620 OID 17650)
+-- TOC entry 3421 (class 2620 OID 17680)
+-- Name: hotel addHotel; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER "addHotel" AFTER INSERT ON locations.hotel FOR EACH ROW EXECUTE FUNCTION locations.addhotel();
+
+
+--
+-- TOC entry 3427 (class 2620 OID 17679)
+-- Name: room addRoom; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER "addRoom" AFTER INSERT ON locations.room FOR EACH ROW EXECUTE FUNCTION locations.addroom();
+
+
+--
+-- TOC entry 3425 (class 2620 OID 17692)
+-- Name: hotel_chain recalchotels; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER recalchotels BEFORE UPDATE ON locations.hotel_chain FOR EACH ROW WHEN ((pg_trigger_depth() = 0)) EXECUTE FUNCTION locations.recalculatehotels();
+
+
+--
+-- TOC entry 3422 (class 2620 OID 17691)
+-- Name: hotel recalcrooms; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER recalcrooms BEFORE UPDATE ON locations.hotel FOR EACH ROW WHEN ((pg_trigger_depth() = 0)) EXECUTE FUNCTION locations.recalculaterooms();
+
+
+--
+-- TOC entry 3423 (class 2620 OID 17683)
+-- Name: hotel removeHotel; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER "removeHotel" BEFORE DELETE ON locations.hotel FOR EACH ROW EXECUTE FUNCTION locations.removehotel();
+
+
+--
+-- TOC entry 3428 (class 2620 OID 17684)
+-- Name: room removeroom; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER removeroom BEFORE DELETE ON locations.room FOR EACH ROW EXECUTE FUNCTION locations.removeroom();
+
+
+--
+-- TOC entry 3424 (class 2620 OID 17687)
+-- Name: hotel zeroRooms; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER "zeroRooms" BEFORE INSERT ON locations.hotel FOR EACH ROW WHEN ((new.number_rooms <> 0)) EXECUTE FUNCTION locations.setnumberrooms();
+
+
+--
+-- TOC entry 3426 (class 2620 OID 17688)
+-- Name: hotel_chain zerohotels; Type: TRIGGER; Schema: locations; Owner: postgres
+--
+
+CREATE TRIGGER zerohotels BEFORE INSERT ON locations.hotel_chain FOR EACH ROW WHEN ((new.number_hotels <> 0)) EXECUTE FUNCTION locations.setnumberrooms();
+
+
+--
+-- TOC entry 3429 (class 2620 OID 17650)
 -- Name: renting_records updateBookingStatus; Type: TRIGGER; Schema: records; Owner: postgres
 --
 
@@ -866,7 +1066,7 @@ CREATE TRIGGER "updateBookingStatus" AFTER INSERT ON records.renting_records FOR
 
 
 --
--- TOC entry 3402 (class 2606 OID 17593)
+-- TOC entry 3412 (class 2606 OID 17593)
 -- Name: hotel_chain_email hotel_chain_email_chain_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -875,7 +1075,7 @@ ALTER TABLE ONLY locations.hotel_chain_email
 
 
 --
--- TOC entry 3400 (class 2606 OID 17598)
+-- TOC entry 3410 (class 2606 OID 17598)
 -- Name: hotel hotel_chain_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -884,7 +1084,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3403 (class 2606 OID 17603)
+-- TOC entry 3413 (class 2606 OID 17603)
 -- Name: hotel_chain_phone hotel_chain_phone_chain_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -893,7 +1093,7 @@ ALTER TABLE ONLY locations.hotel_chain_phone
 
 
 --
--- TOC entry 3404 (class 2606 OID 17608)
+-- TOC entry 3414 (class 2606 OID 17608)
 -- Name: hotel_email hotel_email_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -902,7 +1102,7 @@ ALTER TABLE ONLY locations.hotel_email
 
 
 --
--- TOC entry 3401 (class 2606 OID 17613)
+-- TOC entry 3411 (class 2606 OID 17613)
 -- Name: hotel hotel_manager_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -911,7 +1111,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3405 (class 2606 OID 17618)
+-- TOC entry 3415 (class 2606 OID 17618)
 -- Name: hotel_phone hotel_phone_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -920,7 +1120,7 @@ ALTER TABLE ONLY locations.hotel_phone
 
 
 --
--- TOC entry 3407 (class 2606 OID 17623)
+-- TOC entry 3417 (class 2606 OID 17623)
 -- Name: room_amenities room_amenities_room_number_hotel_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -929,7 +1129,7 @@ ALTER TABLE ONLY locations.room_amenities
 
 
 --
--- TOC entry 3406 (class 2606 OID 17628)
+-- TOC entry 3416 (class 2606 OID 17628)
 -- Name: room room_hotel_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -938,7 +1138,7 @@ ALTER TABLE ONLY locations.room
 
 
 --
--- TOC entry 3408 (class 2606 OID 17633)
+-- TOC entry 3418 (class 2606 OID 17633)
 -- Name: room_problems room_problems_room_number_hotel_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: postgres
 --
 
@@ -947,7 +1147,7 @@ ALTER TABLE ONLY locations.room_problems
 
 
 --
--- TOC entry 3409 (class 2606 OID 17638)
+-- TOC entry 3419 (class 2606 OID 17638)
 -- Name: employee employee_chain_id_fkey; Type: FK CONSTRAINT; Schema: people; Owner: postgres
 --
 
@@ -956,7 +1156,7 @@ ALTER TABLE ONLY people.employee
 
 
 --
--- TOC entry 3410 (class 2606 OID 17643)
+-- TOC entry 3420 (class 2606 OID 17643)
 -- Name: employee_role employee_role_id_fkey; Type: FK CONSTRAINT; Schema: people; Owner: postgres
 --
 
@@ -964,11 +1164,11 @@ ALTER TABLE ONLY people.employee_role
     ADD CONSTRAINT employee_role_id_fkey FOREIGN KEY (id) REFERENCES people.employee(employee_id) ON DELETE CASCADE;
 
 
--- Completed on 2026-03-27 23:24:18 EDT
+-- Completed on 2026-03-28 16:31:18 EDT
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict emBlMN6YbmWaQZYuHiPFkozTSA6MhahIbwkbTyndSpjQxu40SgSfSMBpUjsylBi
+\unrestrict IdEKbbdPKEHpZTJKRztK4YxE45Vg06ZUSTZUL6JpsKbh4nlklQAZ5ryeREw6kSA
 

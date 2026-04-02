@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict eP0Bv59O8nPFjSrehKIMOKir5KOLamybZmJvbQwHzHRJRTjp0Ieja2RqIanGIV6
+\restrict 7LCiK9putBfscxT1TcvDZrWcpASzZFtcidbhKNKm8WqSWkyAyIpdbDXYoUQN71O
 
 -- Dumped from database version 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)
 
--- Started on 2026-03-31 21:55:15 EDT
+-- Started on 2026-04-02 19:35:56 EDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +21,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 7 (class 2615 OID 17477)
+-- TOC entry 5 (class 2615 OID 17709)
 -- Name: locations; Type: SCHEMA; Schema: -; Owner: -
 --
 
@@ -29,7 +29,7 @@ CREATE SCHEMA locations;
 
 
 --
--- TOC entry 5 (class 2615 OID 17478)
+-- TOC entry 6 (class 2615 OID 17710)
 -- Name: people; Type: SCHEMA; Schema: -; Owner: -
 --
 
@@ -37,7 +37,7 @@ CREATE SCHEMA people;
 
 
 --
--- TOC entry 6 (class 2615 OID 17479)
+-- TOC entry 7 (class 2615 OID 17711)
 -- Name: records; Type: SCHEMA; Schema: -; Owner: -
 --
 
@@ -45,7 +45,7 @@ CREATE SCHEMA records;
 
 
 --
--- TOC entry 873 (class 1247 OID 17481)
+-- TOC entry 876 (class 1247 OID 17713)
 -- Name: view_type; Type: TYPE; Schema: locations; Owner: -
 --
 
@@ -56,7 +56,7 @@ CREATE TYPE locations.view_type AS ENUM (
 
 
 --
--- TOC entry 876 (class 1247 OID 17486)
+-- TOC entry 879 (class 1247 OID 17718)
 -- Name: gid; Type: TYPE; Schema: people; Owner: -
 --
 
@@ -68,7 +68,7 @@ CREATE TYPE people.gid AS ENUM (
 
 
 --
--- TOC entry 879 (class 1247 OID 17494)
+-- TOC entry 882 (class 1247 OID 17726)
 -- Name: gid9; Type: TYPE; Schema: people; Owner: -
 --
 
@@ -79,7 +79,7 @@ CREATE TYPE people.gid9 AS ENUM (
 
 
 --
--- TOC entry 882 (class 1247 OID 17500)
+-- TOC entry 885 (class 1247 OID 17732)
 -- Name: booking_states; Type: TYPE; Schema: records; Owner: -
 --
 
@@ -91,7 +91,7 @@ CREATE TYPE records.booking_states AS ENUM (
 
 
 --
--- TOC entry 885 (class 1247 OID 17508)
+-- TOC entry 888 (class 1247 OID 17740)
 -- Name: checking_states; Type: TYPE; Schema: records; Owner: -
 --
 
@@ -102,7 +102,7 @@ CREATE TYPE records.checking_states AS ENUM (
 
 
 --
--- TOC entry 244 (class 1255 OID 17674)
+-- TOC entry 242 (class 1255 OID 17745)
 -- Name: addhotel(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -117,7 +117,7 @@ $$;
 
 
 --
--- TOC entry 241 (class 1255 OID 17671)
+-- TOC entry 243 (class 1255 OID 17746)
 -- Name: addroom(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -132,7 +132,7 @@ $$;
 
 
 --
--- TOC entry 243 (class 1255 OID 17686)
+-- TOC entry 244 (class 1255 OID 17747)
 -- Name: recalculatehotels(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -147,7 +147,7 @@ $$;
 
 
 --
--- TOC entry 242 (class 1255 OID 17685)
+-- TOC entry 245 (class 1255 OID 17748)
 -- Name: recalculaterooms(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -162,7 +162,7 @@ $$;
 
 
 --
--- TOC entry 245 (class 1255 OID 17673)
+-- TOC entry 246 (class 1255 OID 17749)
 -- Name: removehotel(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -177,7 +177,7 @@ $$;
 
 
 --
--- TOC entry 246 (class 1255 OID 17672)
+-- TOC entry 247 (class 1255 OID 17750)
 -- Name: removeroom(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -192,7 +192,7 @@ $$;
 
 
 --
--- TOC entry 239 (class 1255 OID 17664)
+-- TOC entry 248 (class 1255 OID 17751)
 -- Name: setnumberhotels(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -207,7 +207,7 @@ $$;
 
 
 --
--- TOC entry 240 (class 1255 OID 17665)
+-- TOC entry 249 (class 1255 OID 17752)
 -- Name: setnumberrooms(); Type: FUNCTION; Schema: locations; Owner: -
 --
 
@@ -222,7 +222,7 @@ $$;
 
 
 --
--- TOC entry 248 (class 1255 OID 17707)
+-- TOC entry 254 (class 1255 OID 17753)
 -- Name: checkdoublebooking(); Type: FUNCTION; Schema: records; Owner: -
 --
 
@@ -239,7 +239,7 @@ $$;
 
 
 --
--- TOC entry 247 (class 1255 OID 17649)
+-- TOC entry 255 (class 1255 OID 17754)
 -- Name: transformrecord(); Type: FUNCTION; Schema: records; Owner: -
 --
 
@@ -258,7 +258,27 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 217 (class 1259 OID 17513)
+-- TOC entry 241 (class 1259 OID 17943)
+-- Name: export; Type: TABLE; Schema: locations; Owner: -
+--
+
+CREATE TABLE locations.export (
+    hotel_id integer,
+    chain_id character varying(50),
+    manager_id integer,
+    rating integer,
+    number_rooms character varying(50),
+    name character varying(50),
+    street_number character varying(50),
+    street_name character varying(50),
+    city character varying(50),
+    province character varying(50),
+    postal_code character varying(50)
+);
+
+
+--
+-- TOC entry 217 (class 1259 OID 17755)
 -- Name: hotel; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -279,7 +299,7 @@ CREATE TABLE locations.hotel (
 
 
 --
--- TOC entry 218 (class 1259 OID 17518)
+-- TOC entry 218 (class 1259 OID 17760)
 -- Name: hotel_chain; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -296,7 +316,7 @@ CREATE TABLE locations.hotel_chain (
 
 
 --
--- TOC entry 219 (class 1259 OID 17521)
+-- TOC entry 219 (class 1259 OID 17764)
 -- Name: hotel_chain_email; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -307,7 +327,7 @@ CREATE TABLE locations.hotel_chain_email (
 
 
 --
--- TOC entry 233 (class 1259 OID 17653)
+-- TOC entry 220 (class 1259 OID 17767)
 -- Name: hotel_chain_email_chain_id_seq; Type: SEQUENCE; Schema: locations; Owner: -
 --
 
@@ -322,7 +342,7 @@ ALTER TABLE locations.hotel_chain_email ALTER COLUMN chain_id ADD GENERATED BY D
 
 
 --
--- TOC entry 232 (class 1259 OID 17652)
+-- TOC entry 221 (class 1259 OID 17768)
 -- Name: hotel_chain_hotel_chain_id_seq; Type: SEQUENCE; Schema: locations; Owner: -
 --
 
@@ -337,7 +357,7 @@ ALTER TABLE locations.hotel_chain ALTER COLUMN hotel_chain_id ADD GENERATED BY D
 
 
 --
--- TOC entry 220 (class 1259 OID 17524)
+-- TOC entry 222 (class 1259 OID 17769)
 -- Name: hotel_chain_phone; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -348,7 +368,7 @@ CREATE TABLE locations.hotel_chain_phone (
 
 
 --
--- TOC entry 221 (class 1259 OID 17527)
+-- TOC entry 223 (class 1259 OID 17772)
 -- Name: hotel_email; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -359,7 +379,7 @@ CREATE TABLE locations.hotel_email (
 
 
 --
--- TOC entry 231 (class 1259 OID 17651)
+-- TOC entry 224 (class 1259 OID 17775)
 -- Name: hotel_hotel_id_seq; Type: SEQUENCE; Schema: locations; Owner: -
 --
 
@@ -374,7 +394,7 @@ ALTER TABLE locations.hotel ALTER COLUMN hotel_id ADD GENERATED BY DEFAULT AS ID
 
 
 --
--- TOC entry 222 (class 1259 OID 17530)
+-- TOC entry 225 (class 1259 OID 17776)
 -- Name: hotel_phone; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -385,7 +405,7 @@ CREATE TABLE locations.hotel_phone (
 
 
 --
--- TOC entry 223 (class 1259 OID 17533)
+-- TOC entry 226 (class 1259 OID 17779)
 -- Name: room; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -402,7 +422,7 @@ CREATE TABLE locations.room (
 
 
 --
--- TOC entry 224 (class 1259 OID 17538)
+-- TOC entry 227 (class 1259 OID 17784)
 -- Name: room_amenities; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -414,7 +434,7 @@ CREATE TABLE locations.room_amenities (
 
 
 --
--- TOC entry 225 (class 1259 OID 17541)
+-- TOC entry 228 (class 1259 OID 17787)
 -- Name: room_problems; Type: TABLE; Schema: locations; Owner: -
 --
 
@@ -426,7 +446,7 @@ CREATE TABLE locations.room_problems (
 
 
 --
--- TOC entry 234 (class 1259 OID 17654)
+-- TOC entry 229 (class 1259 OID 17790)
 -- Name: room_room_number_seq; Type: SEQUENCE; Schema: locations; Owner: -
 --
 
@@ -441,7 +461,7 @@ ALTER TABLE locations.room ALTER COLUMN room_number ADD GENERATED BY DEFAULT AS 
 
 
 --
--- TOC entry 226 (class 1259 OID 17544)
+-- TOC entry 230 (class 1259 OID 17791)
 -- Name: customer; Type: TABLE; Schema: people; Owner: -
 --
 
@@ -462,7 +482,7 @@ CREATE TABLE people.customer (
 
 
 --
--- TOC entry 235 (class 1259 OID 17655)
+-- TOC entry 231 (class 1259 OID 17795)
 -- Name: customer_customer_id_seq; Type: SEQUENCE; Schema: people; Owner: -
 --
 
@@ -477,7 +497,7 @@ ALTER TABLE people.customer ALTER COLUMN customer_id ADD GENERATED BY DEFAULT AS
 
 
 --
--- TOC entry 227 (class 1259 OID 17548)
+-- TOC entry 232 (class 1259 OID 17796)
 -- Name: employee; Type: TABLE; Schema: people; Owner: -
 --
 
@@ -500,7 +520,7 @@ CREATE TABLE people.employee (
 
 
 --
--- TOC entry 236 (class 1259 OID 17656)
+-- TOC entry 233 (class 1259 OID 17800)
 -- Name: employee_employee_id_seq; Type: SEQUENCE; Schema: people; Owner: -
 --
 
@@ -515,7 +535,7 @@ ALTER TABLE people.employee ALTER COLUMN employee_id ADD GENERATED BY DEFAULT AS
 
 
 --
--- TOC entry 228 (class 1259 OID 17552)
+-- TOC entry 234 (class 1259 OID 17801)
 -- Name: employee_role; Type: TABLE; Schema: people; Owner: -
 --
 
@@ -526,7 +546,38 @@ CREATE TABLE people.employee_role (
 
 
 --
--- TOC entry 229 (class 1259 OID 17555)
+-- TOC entry 236 (class 1259 OID 17808)
+-- Name: booking_archive; Type: TABLE; Schema: records; Owner: -
+--
+
+CREATE TABLE records.booking_archive (
+    archive_id integer NOT NULL,
+    original_booking_id integer NOT NULL,
+    customer_name_snap character varying(60) NOT NULL,
+    hotel_name_snap character varying(60) NOT NULL,
+    room_number_snap integer NOT NULL,
+    start_date_snap date NOT NULL,
+    end_date_snap date NOT NULL
+);
+
+
+--
+-- TOC entry 238 (class 1259 OID 17812)
+-- Name: booking_archive_archive_id_seq; Type: SEQUENCE; Schema: records; Owner: -
+--
+
+ALTER TABLE records.booking_archive ALTER COLUMN archive_id ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME records.booking_archive_archive_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 235 (class 1259 OID 17804)
 -- Name: booking_records; Type: TABLE; Schema: records; Owner: -
 --
 
@@ -543,23 +594,7 @@ CREATE TABLE records.booking_records (
 
 
 --
--- TOC entry 231 (class 1259 OID 17559)
--- Name: booking_archive; Type: TABLE; Schema: records; Owner: -
---
-
-CREATE TABLE records.booking_archive (
-    archive_id integer NOT NULL,
-    original_booking_id integer NOT NULL,
-    customer_name_snap character varying(60) NOT NULL,
-    hotel_name_snap character varying(60) NOT NULL,
-    room_number_snap integer NOT NULL,
-    start_date_snap date NOT NULL,
-    end_date_snap date NOT NULL
-);
-
-
---
--- TOC entry 238 (class 1259 OID 17658)
+-- TOC entry 237 (class 1259 OID 17811)
 -- Name: booking_records_booking_id_seq; Type: SEQUENCE; Schema: records; Owner: -
 --
 
@@ -574,22 +609,7 @@ ALTER TABLE records.booking_records ALTER COLUMN booking_id ADD GENERATED BY DEF
 
 
 --
--- TOC entry 239 (class 1259 OID 17659)
--- Name: booking_archive_archive_id_seq; Type: SEQUENCE; Schema: records; Owner: -
---
-
-ALTER TABLE records.booking_archive ALTER COLUMN archive_id ADD GENERATED BY DEFAULT AS IDENTITY (
-    SEQUENCE NAME records.booking_archive_archive_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
--- TOC entry 230 (class 1259 OID 17558)
+-- TOC entry 239 (class 1259 OID 17813)
 -- Name: renting_records; Type: TABLE; Schema: records; Owner: -
 --
 
@@ -608,7 +628,7 @@ CREATE TABLE records.renting_records (
 
 
 --
--- TOC entry 237 (class 1259 OID 17657)
+-- TOC entry 240 (class 1259 OID 17817)
 -- Name: renting_records_renting_id_seq; Type: SEQUENCE; Schema: records; Owner: -
 --
 
@@ -623,7 +643,160 @@ ALTER TABLE records.renting_records ALTER COLUMN renting_id ADD GENERATED BY DEF
 
 
 --
--- TOC entry 3577 (class 0 OID 17513)
+-- TOC entry 3614 (class 0 OID 17943)
+-- Dependencies: 241
+-- Data for Name: export; Type: TABLE DATA; Schema: locations; Owner: -
+--
+
+INSERT INTO locations.export VALUES (8, '0', 7, 6, '5', 'Metropolitan', '145', 'Howe St', 'Vancouver', 'BC', 'V6C2Y9');
+INSERT INTO locations.export VALUES (1, '0', 1, 10, '5', 'The Slumber', '128', 'Alphabet St.', 'Test City', 'Atlantis', 'A1AA1A');
+INSERT INTO locations.export VALUES (0, '0', 0, 0, '10', 'Test Hotel', '140', 'Alphabet St.', 'Test City', 'Atlantis', 'A1AA1A');
+INSERT INTO locations.export VALUES (21, '2', 20, 7, '0', 'Oswego', '551', 'Sutherland Ave', 'Kelowna', 'BC', 'V1Y9P4');
+INSERT INTO locations.export VALUES (22, '2', 21, 8, '0', 'Empress', '21', 'Government St', 'Victoria', 'BC', 'V8W1W5');
+INSERT INTO locations.export VALUES (23, '2', 22, 3, '0', 'Grand Pacific', '463', 'Belleville St', 'Victoria', 'BC', 'V8V1X3');
+INSERT INTO locations.export VALUES (24, '2', 23, 5, '0', 'Resort', '21', 'Crescent Rd', 'St. Andrews', 'NB', 'E5B1B5');
+INSERT INTO locations.export VALUES (25, '2', 24, 6, '0', 'Sunset', '11', 'Sunset Dr', 'St. Andrews', 'NB', 'E5B2M1');
+INSERT INTO locations.export VALUES (26, '2', 25, 1, '0', 'Lake Louise', '311', 'Tunnel Dr', 'Lake Louise', 'AB', 'T0L1E0');
+INSERT INTO locations.export VALUES (27, '2', 26, 4, '0', 'Mount Royal', '91', 'Rue Catherine', 'Montréal', 'QC', 'H3B1M5');
+INSERT INTO locations.export VALUES (28, '3', 27, 8, '0', 'Sheraton', '12', 'Queen St W', 'Toronto', 'ON', 'M5H2M9');
+INSERT INTO locations.export VALUES (29, '3', 28, 7, '0', 'St. Regis', '25', 'Bay St', 'Toronto', 'ON', 'M5H4G3');
+INSERT INTO locations.export VALUES (30, '3', 29, 7, '0', 'Chelsea', '3', 'Ripley Ave', 'Toronto', 'ON', 'M5V2P2');
+INSERT INTO locations.export VALUES (31, '3', 30, 5, '0', 'Delta Toronto', '75', 'Simcoe St', 'Toronto', 'ON', 'M5J3A6');
+INSERT INTO locations.export VALUES (32, '3', 31, 5, '0', 'Frontenac', '1', 'Rue Carrières', 'Québec City', 'QC', 'G1R4P5');
+INSERT INTO locations.export VALUES (33, '3', 32, 3, '0', 'Palace Royal', '44', 'Rue Grande', 'Québec City', 'QC', 'G1R2J6');
+INSERT INTO locations.export VALUES (34, '3', 33, 8, '0', 'Auberge des Arts', '28', 'Rue Saint-Jean', 'Québec City', 'QC', 'G1R1P5');
+INSERT INTO locations.export VALUES (35, '3', 34, 6, '0', 'Vancouver Suites', '32', 'Burrard St', 'Vancouver', 'BC', 'V6Z1X4');
+INSERT INTO locations.export VALUES (36, '4', 35, 6, '0', 'Inn at the Forks', '75', 'Forks Rd', 'Winnipeg', 'MB', 'R3C4T6');
+INSERT INTO locations.export VALUES (37, '4', 36, 5, '0', 'Fort Garry', '221', 'Broadway St', 'Winnipeg', 'MB', 'R3C0M6');
+INSERT INTO locations.export VALUES (38, '4', 37, 9, '0', 'Selkirk', '33', 'Princess St', 'Winnipeg', 'MB', 'R3B1K2');
+INSERT INTO locations.export VALUES (39, '4', 38, 3, '0', 'Blackfoot', '94', '0 Ave SE', 'Calgary', 'AB', 'T2G0S6');
+INSERT INTO locations.export VALUES (40, '4', 39, 7, '0', 'Sandman Edmonton', '251', 'Olympia Blvd NW', 'Edmonton', 'AB', 'T5T4J5');
+INSERT INTO locations.export VALUES (3, '1', 4, 7, '0', 'The Reckoning', '54', 'Dirt Rd.', 'Middle Of Nowhere', 'ON', 'L1PC2C');
+INSERT INTO locations.export VALUES (4, '1', 3, 8, '0', 'The Retconning', '55', 'Dirt Rd.', 'Middle Of Nowhere', 'ON', 'L1PC2C');
+INSERT INTO locations.export VALUES (2, '0', 2, 7, '5', 'The Wakening', '12', 'Last St.', 'First City', 'ON', 'J1NC2C');
+INSERT INTO locations.export VALUES (15, '1', 14, 5, '5', 'Petit Mtl', '188', 'Rue Paul O', 'Montréal', 'QC', 'H2Y1Z8');
+INSERT INTO locations.export VALUES (11, '1', 10, 5, '6', 'Ritz-Carlton', '1128', 'Sherbrooke St W', 'Montréal', 'QC', 'H3G1H6');
+INSERT INTO locations.export VALUES (17, '4', 16, 3, '4', 'Moose', '145', 'Banff Ave', 'Banff', 'AB', 'T1L1B8');
+INSERT INTO locations.export VALUES (12, '1', 11, 7, '5', 'William Gray', '421', 'Rue Vincent', 'Montréal', 'QC', 'H2Y3A6');
+INSERT INTO locations.export VALUES (19, '4', 18, 2, '4', 'Arts', '139', '1 St SW', 'Calgary', 'AB', 'T2P0G8');
+INSERT INTO locations.export VALUES (9, '0', 8, 2, '6', 'Sutton Place', '845', 'Burrard St', 'Vancouver', 'BC', 'V6Z2K6');
+INSERT INTO locations.export VALUES (16, '1', 15, 6, '4', 'Banff', '425', 'Springs Dr', 'Banff', 'AB', 'T1L1J4');
+INSERT INTO locations.export VALUES (14, '1', 13, 3, '6', 'Birks Mtl', '147', 'Rue James', 'Montréal', 'QC', 'H2Y1N1');
+INSERT INTO locations.export VALUES (20, '2', 19, 6, '5', 'Bed & Breakfast', '512', 'Main St', 'Kelowna', 'BC', 'V1Y6M9');
+INSERT INTO locations.export VALUES (7, '0', 6, 9, '6', 'Paradox', '1239', 'W Georgia St', 'Vancouver', 'BC', 'V6E4A2');
+INSERT INTO locations.export VALUES (18, '4', 17, 4, '5', 'Delta', '229', '4 Ave SW', 'Calgary', 'AB', 'T2P0H7');
+INSERT INTO locations.export VALUES (10, '0', 9, 4, '6', 'Fairmont Queen', '430', 'Rue Gauchetière', 'Montréal', 'QC', 'H5A1J5');
+INSERT INTO locations.export VALUES (13, '1', 12, 8, '6', 'Place d’Armes', '65', 'Rue Jacques', 'Montréal', 'QC', 'H2Y1K9');
+INSERT INTO locations.export VALUES (6, '0', 5, 7, '7', 'Fairmont', '201', 'W Georgia St', 'Vancouver', 'BC', 'V6C2W6');
+INSERT INTO locations.export VALUES (4, 'No Name', 8, 14, 'Last St.', 'First City', 'ON', 'J1NC2C', NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (3, 'Only Name', 8, 8, 'Last St.', 'First City', 'ON', 'J1NC2C', NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (0, 'Test Chain', 8, 124, 'Alphabet St.', 'Test City', 'Atlantis', 'A1AA1A', NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (1, 'Test Chain 2', 8, 126, 'Alphabet St.', 'Test City', 'Atlantis', 'A1AA1A', NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (2, 'Test Chain 3', 8, 122, 'Alphabet St.', 'Test City', 'Atlantis', 'A1AA1A', NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (10, '1', 2000000, 40000, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (11, '1', 2000, 3, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (13, '1', 3000, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (14, '1', 2000, 1, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (15, '2', 2200, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (16, '2', 2200, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (17, '2', 2200, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (18, '2', 2300, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (19, '2', 2200, 2, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (9, '0', 20000, 4, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (1, '6', 120, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (2, '7', 150, 3, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (3, '8', 200, 4, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (4, '9', 180, 2, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (5, '10', 220, 5, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (6, '11', 140, 2, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (7, '12', 175, 3, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (8, '13', 160, 2, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (9, '14', 210, 4, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (10, '15', 190, 3, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (11, '16', 130, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (12, '17', 170, 3, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (13, '18', 250, 5, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (14, '19', 300, 6, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (15, '20', 275, 4, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (16, '6', 160, 3, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (17, '7', 180, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (18, '8', 220, 4, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (19, '9', 240, 5, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (20, '10', 260, 6, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (1, '11', 135, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (2, '12', 145, 3, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (3, '13', 155, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (4, '14', 165, 3, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (5, '15', 175, 4, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (6, '16', 185, 2, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (7, '17', 195, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (8, '18', 205, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (9, '19', 215, 5, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (10, '20', 225, 2, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (11, '6', 235, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (12, '7', 245, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (13, '8', 255, 5, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (14, '9', 265, 2, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (15, '10', 275, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (16, '11', 285, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (17, '12', 295, 5, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (18, '13', 305, 2, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (19, '14', 315, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (20, '15', 325, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (7, '14', 198, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (12, '9', 256, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (3, '18', 145, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (19, '7', 310, 5, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (5, '11', 167, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (16, '20', 289, 6, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (2, '6', 134, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (11, '15', 222, 3, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (12, '13', 175, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (14, '17', 260, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (1, '12', 120, 1, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (20, '8', 330, 5, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (6, '19', 210, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (11, '10', 240, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (4, '16', 155, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (10, '14', 200, 3, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (13, '6', 270, 5, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (18, '11', 295, 4, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (15, '9', 225, 3, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (17, '20', 305, 5, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (7, '8', 180, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (12, '18', 265, 4, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (3, '7', 150, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (19, '13', 315, 6, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (6, '10', 170, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (6, '6', 285, 5, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (2, '15', 140, 1, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (10, '11', 230, 3, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (8, '17', 190, 2, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (14, '12', 255, 4, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (1, '19', 125, 1, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (20, '9', 335, 6, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (60, '16', 205, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (11, '14', 245, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (4, '20', 160, 2, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (9, '7', 210, 3, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (1, '18', 275, 5, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (18, '10', 300, 4, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (15, '13', 235, 3, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (17, '6', 310, 5, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (3, '0', 560, 1, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (4, '0', 700, 1, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (0, '0', 2000, 1, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (5, '0', 200, 1, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (7, '0', 122, 1, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (8, '0', 1340, 7, 'Sea', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (1, '0', 260, 4, 'Mountain', 'false', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (6, '0', 1900, 3, 'Sea', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (2, '0', 150, 1, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO locations.export VALUES (12, '1', 6000, 2, 'Mountain', 'true', NULL, NULL, NULL, NULL, NULL);
+
+
+--
+-- TOC entry 3590 (class 0 OID 17755)
 -- Dependencies: 217
 -- Data for Name: hotel; Type: TABLE DATA; Schema: locations; Owner: -
 --
@@ -636,7 +809,7 @@ INSERT INTO locations.hotel VALUES (4, 1, 4, 8, 0, 'The Retconning', 55, 'Dirt R
 
 
 --
--- TOC entry 3578 (class 0 OID 17518)
+-- TOC entry 3591 (class 0 OID 17760)
 -- Dependencies: 218
 -- Data for Name: hotel_chain; Type: TABLE DATA; Schema: locations; Owner: -
 --
@@ -649,7 +822,7 @@ INSERT INTO locations.hotel_chain VALUES (3, 'Only Name', 0, NULL, 'Last St.', N
 
 
 --
--- TOC entry 3579 (class 0 OID 17521)
+-- TOC entry 3592 (class 0 OID 17764)
 -- Dependencies: 219
 -- Data for Name: hotel_chain_email; Type: TABLE DATA; Schema: locations; Owner: -
 --
@@ -660,8 +833,8 @@ INSERT INTO locations.hotel_chain_email VALUES (2, 'second@Chain.com');
 
 
 --
--- TOC entry 3580 (class 0 OID 17524)
--- Dependencies: 220
+-- TOC entry 3595 (class 0 OID 17769)
+-- Dependencies: 222
 -- Data for Name: hotel_chain_phone; Type: TABLE DATA; Schema: locations; Owner: -
 --
 
@@ -671,8 +844,8 @@ INSERT INTO locations.hotel_chain_phone VALUES (2, 9999999999);
 
 
 --
--- TOC entry 3581 (class 0 OID 17527)
--- Dependencies: 221
+-- TOC entry 3596 (class 0 OID 17772)
+-- Dependencies: 223
 -- Data for Name: hotel_email; Type: TABLE DATA; Schema: locations; Owner: -
 --
 
@@ -683,8 +856,8 @@ INSERT INTO locations.hotel_email VALUES (3, 'food@hotels.com');
 
 
 --
--- TOC entry 3582 (class 0 OID 17530)
--- Dependencies: 222
+-- TOC entry 3598 (class 0 OID 17776)
+-- Dependencies: 225
 -- Data for Name: hotel_phone; Type: TABLE DATA; Schema: locations; Owner: -
 --
 
@@ -695,8 +868,8 @@ INSERT INTO locations.hotel_phone VALUES (3, 2345667232);
 
 
 --
--- TOC entry 3583 (class 0 OID 17533)
--- Dependencies: 223
+-- TOC entry 3599 (class 0 OID 17779)
+-- Dependencies: 226
 -- Data for Name: room; Type: TABLE DATA; Schema: locations; Owner: -
 --
 
@@ -723,8 +896,8 @@ INSERT INTO locations.room VALUES (9, 0, 20000, 4, 'Mountain', true);
 
 
 --
--- TOC entry 3584 (class 0 OID 17538)
--- Dependencies: 224
+-- TOC entry 3600 (class 0 OID 17784)
+-- Dependencies: 227
 -- Data for Name: room_amenities; Type: TABLE DATA; Schema: locations; Owner: -
 --
 
@@ -735,8 +908,8 @@ INSERT INTO locations.room_amenities VALUES (3, 0, 'Blankets');
 
 
 --
--- TOC entry 3585 (class 0 OID 17541)
--- Dependencies: 225
+-- TOC entry 3601 (class 0 OID 17787)
+-- Dependencies: 228
 -- Data for Name: room_problems; Type: TABLE DATA; Schema: locations; Owner: -
 --
 
@@ -749,8 +922,8 @@ INSERT INTO locations.room_problems VALUES (3, 0, 'Chicken');
 
 
 --
--- TOC entry 3586 (class 0 OID 17544)
--- Dependencies: 226
+-- TOC entry 3603 (class 0 OID 17791)
+-- Dependencies: 230
 -- Data for Name: customer; Type: TABLE DATA; Schema: people; Owner: -
 --
 
@@ -764,8 +937,8 @@ INSERT INTO people.customer VALUES (4, 'Smith', 'Loblaws', 'Smithson', 1, 'First
 
 
 --
--- TOC entry 3587 (class 0 OID 17548)
--- Dependencies: 227
+-- TOC entry 3605 (class 0 OID 17796)
+-- Dependencies: 232
 -- Data for Name: employee; Type: TABLE DATA; Schema: people; Owner: -
 --
 
@@ -777,8 +950,8 @@ INSERT INTO people.employee VALUES (4, 1, 1, '2nd Person', NULL, NULL, NULL, NUL
 
 
 --
--- TOC entry 3588 (class 0 OID 17552)
--- Dependencies: 228
+-- TOC entry 3607 (class 0 OID 17801)
+-- Dependencies: 234
 -- Data for Name: employee_role; Type: TABLE DATA; Schema: people; Owner: -
 --
 
@@ -790,8 +963,16 @@ INSERT INTO people.employee_role VALUES (2, 'Bob');
 
 
 --
--- TOC entry 3589 (class 0 OID 17555)
--- Dependencies: 229
+-- TOC entry 3609 (class 0 OID 17808)
+-- Dependencies: 236
+-- Data for Name: booking_archive; Type: TABLE DATA; Schema: records; Owner: -
+--
+
+
+
+--
+-- TOC entry 3608 (class 0 OID 17804)
+-- Dependencies: 235
 -- Data for Name: booking_records; Type: TABLE DATA; Schema: records; Owner: -
 --
 
@@ -804,8 +985,8 @@ INSERT INTO records.booking_records VALUES (0, 0, 0, 0, '2026-03-31', '2027-03-3
 
 
 --
--- TOC entry 3590 (class 0 OID 17558)
--- Dependencies: 230
+-- TOC entry 3612 (class 0 OID 17813)
+-- Dependencies: 239
 -- Data for Name: renting_records; Type: TABLE DATA; Schema: records; Owner: -
 --
 
@@ -813,8 +994,8 @@ INSERT INTO records.renting_records VALUES (0, 0, 0, 0, 0, '2026-03-31', '2027-0
 
 
 --
--- TOC entry 3604 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 3620 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: hotel_chain_email_chain_id_seq; Type: SEQUENCE SET; Schema: locations; Owner: -
 --
 
@@ -822,8 +1003,8 @@ SELECT pg_catalog.setval('locations.hotel_chain_email_chain_id_seq', 1, false);
 
 
 --
--- TOC entry 3605 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3621 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: hotel_chain_hotel_chain_id_seq; Type: SEQUENCE SET; Schema: locations; Owner: -
 --
 
@@ -831,8 +1012,8 @@ SELECT pg_catalog.setval('locations.hotel_chain_hotel_chain_id_seq', 3, true);
 
 
 --
--- TOC entry 3606 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3622 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: hotel_hotel_id_seq; Type: SEQUENCE SET; Schema: locations; Owner: -
 --
 
@@ -840,8 +1021,8 @@ SELECT pg_catalog.setval('locations.hotel_hotel_id_seq', 4, true);
 
 
 --
--- TOC entry 3607 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3623 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: room_room_number_seq; Type: SEQUENCE SET; Schema: locations; Owner: -
 --
 
@@ -849,8 +1030,8 @@ SELECT pg_catalog.setval('locations.room_room_number_seq', 19, true);
 
 
 --
--- TOC entry 3608 (class 0 OID 0)
--- Dependencies: 235
+-- TOC entry 3624 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: customer_customer_id_seq; Type: SEQUENCE SET; Schema: people; Owner: -
 --
 
@@ -858,8 +1039,8 @@ SELECT pg_catalog.setval('people.customer_customer_id_seq', 6, true);
 
 
 --
--- TOC entry 3609 (class 0 OID 0)
--- Dependencies: 236
+-- TOC entry 3625 (class 0 OID 0)
+-- Dependencies: 233
 -- Name: employee_employee_id_seq; Type: SEQUENCE SET; Schema: people; Owner: -
 --
 
@@ -867,8 +1048,17 @@ SELECT pg_catalog.setval('people.employee_employee_id_seq', 4, true);
 
 
 --
--- TOC entry 3610 (class 0 OID 0)
+-- TOC entry 3626 (class 0 OID 0)
 -- Dependencies: 238
+-- Name: booking_archive_archive_id_seq; Type: SEQUENCE SET; Schema: records; Owner: -
+--
+
+SELECT pg_catalog.setval('records.booking_archive_archive_id_seq', 1, false);
+
+
+--
+-- TOC entry 3627 (class 0 OID 0)
+-- Dependencies: 237
 -- Name: booking_records_booking_id_seq; Type: SEQUENCE SET; Schema: records; Owner: -
 --
 
@@ -876,8 +1066,8 @@ SELECT pg_catalog.setval('records.booking_records_booking_id_seq', 5, true);
 
 
 --
--- TOC entry 3611 (class 0 OID 0)
--- Dependencies: 237
+-- TOC entry 3628 (class 0 OID 0)
+-- Dependencies: 240
 -- Name: renting_records_renting_id_seq; Type: SEQUENCE SET; Schema: records; Owner: -
 --
 
@@ -885,7 +1075,7 @@ SELECT pg_catalog.setval('records.renting_records_renting_id_seq', 1, false);
 
 
 --
--- TOC entry 3388 (class 2606 OID 17562)
+-- TOC entry 3394 (class 2606 OID 17819)
 -- Name: hotel_chain_email hotel_chain_email_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -894,7 +1084,7 @@ ALTER TABLE ONLY locations.hotel_chain_email
 
 
 --
--- TOC entry 3390 (class 2606 OID 17564)
+-- TOC entry 3396 (class 2606 OID 17821)
 -- Name: hotel_chain_phone hotel_chain_phone_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -903,7 +1093,7 @@ ALTER TABLE ONLY locations.hotel_chain_phone
 
 
 --
--- TOC entry 3386 (class 2606 OID 17566)
+-- TOC entry 3392 (class 2606 OID 17823)
 -- Name: hotel_chain hotel_chain_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -912,7 +1102,7 @@ ALTER TABLE ONLY locations.hotel_chain
 
 
 --
--- TOC entry 3392 (class 2606 OID 17568)
+-- TOC entry 3398 (class 2606 OID 17825)
 -- Name: hotel_email hotel_email_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -921,7 +1111,7 @@ ALTER TABLE ONLY locations.hotel_email
 
 
 --
--- TOC entry 3382 (class 2606 OID 17570)
+-- TOC entry 3388 (class 2606 OID 17827)
 -- Name: hotel hotel_hotel_id_key; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -930,7 +1120,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3394 (class 2606 OID 17572)
+-- TOC entry 3400 (class 2606 OID 17829)
 -- Name: hotel_phone hotel_phone_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -939,7 +1129,7 @@ ALTER TABLE ONLY locations.hotel_phone
 
 
 --
--- TOC entry 3384 (class 2606 OID 17574)
+-- TOC entry 3390 (class 2606 OID 17831)
 -- Name: hotel hotel_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -948,7 +1138,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3398 (class 2606 OID 17576)
+-- TOC entry 3404 (class 2606 OID 17833)
 -- Name: room_amenities room_amenities_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -957,7 +1147,7 @@ ALTER TABLE ONLY locations.room_amenities
 
 
 --
--- TOC entry 3396 (class 2606 OID 17578)
+-- TOC entry 3402 (class 2606 OID 17835)
 -- Name: room room_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -966,7 +1156,7 @@ ALTER TABLE ONLY locations.room
 
 
 --
--- TOC entry 3400 (class 2606 OID 17580)
+-- TOC entry 3406 (class 2606 OID 17837)
 -- Name: room_problems room_problems_pkey; Type: CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -975,7 +1165,7 @@ ALTER TABLE ONLY locations.room_problems
 
 
 --
--- TOC entry 3402 (class 2606 OID 17582)
+-- TOC entry 3408 (class 2606 OID 17839)
 -- Name: customer customer_pkey; Type: CONSTRAINT; Schema: people; Owner: -
 --
 
@@ -984,7 +1174,7 @@ ALTER TABLE ONLY people.customer
 
 
 --
--- TOC entry 3404 (class 2606 OID 17584)
+-- TOC entry 3410 (class 2606 OID 17841)
 -- Name: employee employee_pkey; Type: CONSTRAINT; Schema: people; Owner: -
 --
 
@@ -993,7 +1183,7 @@ ALTER TABLE ONLY people.employee
 
 
 --
--- TOC entry 3408 (class 2606 OID 17586)
+-- TOC entry 3414 (class 2606 OID 17843)
 -- Name: employee_role employee_role_pkey; Type: CONSTRAINT; Schema: people; Owner: -
 --
 
@@ -1002,7 +1192,7 @@ ALTER TABLE ONLY people.employee_role
 
 
 --
--- TOC entry 3406 (class 2606 OID 17588)
+-- TOC entry 3412 (class 2606 OID 17845)
 -- Name: employee employee_sin_key; Type: CONSTRAINT; Schema: people; Owner: -
 --
 
@@ -1011,16 +1201,7 @@ ALTER TABLE ONLY people.employee
 
 
 --
--- TOC entry 3410 (class 2606 OID 17590)
--- Name: booking_records booking_records_pkey; Type: CONSTRAINT; Schema: records; Owner: -
---
-
-ALTER TABLE ONLY records.booking_records
-    ADD CONSTRAINT booking_records_pkey PRIMARY KEY (booking_id);
-
-
---
--- TOC entry 3411 (class 2606 OID 17591)
+-- TOC entry 3418 (class 2606 OID 17849)
 -- Name: booking_archive booking_archive_pkey; Type: CONSTRAINT; Schema: records; Owner: -
 --
 
@@ -1029,7 +1210,16 @@ ALTER TABLE ONLY records.booking_archive
 
 
 --
--- TOC entry 3412 (class 2606 OID 17592)
+-- TOC entry 3416 (class 2606 OID 17847)
+-- Name: booking_records booking_records_pkey; Type: CONSTRAINT; Schema: records; Owner: -
+--
+
+ALTER TABLE ONLY records.booking_records
+    ADD CONSTRAINT booking_records_pkey PRIMARY KEY (booking_id);
+
+
+--
+-- TOC entry 3420 (class 2606 OID 17851)
 -- Name: renting_records renting_records_pkey; Type: CONSTRAINT; Schema: records; Owner: -
 --
 
@@ -1038,7 +1228,7 @@ ALTER TABLE ONLY records.renting_records
 
 
 --
--- TOC entry 3424 (class 2620 OID 17680)
+-- TOC entry 3437 (class 2620 OID 17852)
 -- Name: hotel addHotel; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1046,7 +1236,7 @@ CREATE TRIGGER "addHotel" AFTER INSERT ON locations.hotel FOR EACH ROW EXECUTE F
 
 
 --
--- TOC entry 3430 (class 2620 OID 17679)
+-- TOC entry 3443 (class 2620 OID 17853)
 -- Name: room addRoom; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1054,7 +1244,7 @@ CREATE TRIGGER "addRoom" AFTER INSERT ON locations.room FOR EACH ROW EXECUTE FUN
 
 
 --
--- TOC entry 3428 (class 2620 OID 17692)
+-- TOC entry 3441 (class 2620 OID 17854)
 -- Name: hotel_chain recalchotels; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1062,7 +1252,7 @@ CREATE TRIGGER recalchotels BEFORE UPDATE ON locations.hotel_chain FOR EACH ROW 
 
 
 --
--- TOC entry 3425 (class 2620 OID 17691)
+-- TOC entry 3438 (class 2620 OID 17855)
 -- Name: hotel recalcrooms; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1070,7 +1260,7 @@ CREATE TRIGGER recalcrooms BEFORE UPDATE ON locations.hotel FOR EACH ROW WHEN ((
 
 
 --
--- TOC entry 3426 (class 2620 OID 17683)
+-- TOC entry 3439 (class 2620 OID 17856)
 -- Name: hotel removeHotel; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1078,7 +1268,7 @@ CREATE TRIGGER "removeHotel" BEFORE DELETE ON locations.hotel FOR EACH ROW EXECU
 
 
 --
--- TOC entry 3431 (class 2620 OID 17684)
+-- TOC entry 3444 (class 2620 OID 17857)
 -- Name: room removeroom; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1086,7 +1276,7 @@ CREATE TRIGGER removeroom BEFORE DELETE ON locations.room FOR EACH ROW EXECUTE F
 
 
 --
--- TOC entry 3427 (class 2620 OID 17687)
+-- TOC entry 3440 (class 2620 OID 17858)
 -- Name: hotel zeroRooms; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1094,7 +1284,7 @@ CREATE TRIGGER "zeroRooms" BEFORE INSERT ON locations.hotel FOR EACH ROW WHEN ((
 
 
 --
--- TOC entry 3429 (class 2620 OID 17699)
+-- TOC entry 3442 (class 2620 OID 17859)
 -- Name: hotel_chain zerohotels; Type: TRIGGER; Schema: locations; Owner: -
 --
 
@@ -1102,7 +1292,7 @@ CREATE TRIGGER zerohotels BEFORE INSERT ON locations.hotel_chain FOR EACH ROW WH
 
 
 --
--- TOC entry 3432 (class 2620 OID 17708)
+-- TOC entry 3445 (class 2620 OID 17860)
 -- Name: renting_records checkDoubleBooking; Type: TRIGGER; Schema: records; Owner: -
 --
 
@@ -1110,7 +1300,7 @@ CREATE TRIGGER "checkDoubleBooking" BEFORE INSERT ON records.renting_records FOR
 
 
 --
--- TOC entry 3433 (class 2620 OID 17650)
+-- TOC entry 3446 (class 2620 OID 17861)
 -- Name: renting_records updateBookingStatus; Type: TRIGGER; Schema: records; Owner: -
 --
 
@@ -1118,7 +1308,7 @@ CREATE TRIGGER "updateBookingStatus" AFTER INSERT ON records.renting_records FOR
 
 
 --
--- TOC entry 3415 (class 2606 OID 17593)
+-- TOC entry 3423 (class 2606 OID 17862)
 -- Name: hotel_chain_email hotel_chain_email_chain_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1127,7 +1317,7 @@ ALTER TABLE ONLY locations.hotel_chain_email
 
 
 --
--- TOC entry 3413 (class 2606 OID 17598)
+-- TOC entry 3421 (class 2606 OID 17867)
 -- Name: hotel hotel_chain_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1136,7 +1326,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3416 (class 2606 OID 17603)
+-- TOC entry 3424 (class 2606 OID 17872)
 -- Name: hotel_chain_phone hotel_chain_phone_chain_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1145,7 +1335,7 @@ ALTER TABLE ONLY locations.hotel_chain_phone
 
 
 --
--- TOC entry 3417 (class 2606 OID 17608)
+-- TOC entry 3425 (class 2606 OID 17877)
 -- Name: hotel_email hotel_email_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1154,7 +1344,7 @@ ALTER TABLE ONLY locations.hotel_email
 
 
 --
--- TOC entry 3414 (class 2606 OID 17613)
+-- TOC entry 3422 (class 2606 OID 17882)
 -- Name: hotel hotel_manager_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1163,7 +1353,7 @@ ALTER TABLE ONLY locations.hotel
 
 
 --
--- TOC entry 3418 (class 2606 OID 17618)
+-- TOC entry 3426 (class 2606 OID 17887)
 -- Name: hotel_phone hotel_phone_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1172,7 +1362,7 @@ ALTER TABLE ONLY locations.hotel_phone
 
 
 --
--- TOC entry 3420 (class 2606 OID 17623)
+-- TOC entry 3428 (class 2606 OID 17892)
 -- Name: room_amenities room_amenities_room_number_hotel_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1181,7 +1371,7 @@ ALTER TABLE ONLY locations.room_amenities
 
 
 --
--- TOC entry 3419 (class 2606 OID 17628)
+-- TOC entry 3427 (class 2606 OID 17897)
 -- Name: room room_hotel_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1190,7 +1380,7 @@ ALTER TABLE ONLY locations.room
 
 
 --
--- TOC entry 3421 (class 2606 OID 17633)
+-- TOC entry 3429 (class 2606 OID 17902)
 -- Name: room_problems room_problems_room_number_hotel_id_fkey; Type: FK CONSTRAINT; Schema: locations; Owner: -
 --
 
@@ -1199,7 +1389,7 @@ ALTER TABLE ONLY locations.room_problems
 
 
 --
--- TOC entry 3422 (class 2606 OID 17638)
+-- TOC entry 3430 (class 2606 OID 17907)
 -- Name: employee employee_chain_id_fkey; Type: FK CONSTRAINT; Schema: people; Owner: -
 --
 
@@ -1208,7 +1398,7 @@ ALTER TABLE ONLY people.employee
 
 
 --
--- TOC entry 3423 (class 2606 OID 17643)
+-- TOC entry 3431 (class 2606 OID 17912)
 -- Name: employee_role employee_role_id_fkey; Type: FK CONSTRAINT; Schema: people; Owner: -
 --
 
@@ -1216,11 +1406,56 @@ ALTER TABLE ONLY people.employee_role
     ADD CONSTRAINT employee_role_id_fkey FOREIGN KEY (id) REFERENCES people.employee(employee_id) ON DELETE CASCADE;
 
 
--- Completed on 2026-03-31 21:55:15 EDT
+--
+-- TOC entry 3432 (class 2606 OID 17928)
+-- Name: booking_records booking_records_customer_id_fkey; Type: FK CONSTRAINT; Schema: records; Owner: -
+--
+
+ALTER TABLE ONLY records.booking_records
+    ADD CONSTRAINT booking_records_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES people.customer(customer_id);
+
+
+--
+-- TOC entry 3433 (class 2606 OID 17918)
+-- Name: booking_records booking_records_room_number_hotel_id_fkey; Type: FK CONSTRAINT; Schema: records; Owner: -
+--
+
+ALTER TABLE ONLY records.booking_records
+    ADD CONSTRAINT booking_records_room_number_hotel_id_fkey FOREIGN KEY (room_number, hotel_id) REFERENCES locations.room(room_number, hotel_id);
+
+
+--
+-- TOC entry 3434 (class 2606 OID 17933)
+-- Name: renting_records renting_records_customer_id_fkey; Type: FK CONSTRAINT; Schema: records; Owner: -
+--
+
+ALTER TABLE ONLY records.renting_records
+    ADD CONSTRAINT renting_records_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES people.customer(customer_id);
+
+
+--
+-- TOC entry 3435 (class 2606 OID 17938)
+-- Name: renting_records renting_records_employee_id_fkey; Type: FK CONSTRAINT; Schema: records; Owner: -
+--
+
+ALTER TABLE ONLY records.renting_records
+    ADD CONSTRAINT renting_records_employee_id_fkey FOREIGN KEY (employee_id) REFERENCES people.employee(employee_id);
+
+
+--
+-- TOC entry 3436 (class 2606 OID 17923)
+-- Name: renting_records renting_records_room_number_hotel_id_fkey; Type: FK CONSTRAINT; Schema: records; Owner: -
+--
+
+ALTER TABLE ONLY records.renting_records
+    ADD CONSTRAINT renting_records_room_number_hotel_id_fkey FOREIGN KEY (room_number, hotel_id) REFERENCES locations.room(room_number, hotel_id);
+
+
+-- Completed on 2026-04-02 19:35:56 EDT
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict eP0Bv59O8nPFjSrehKIMOKir5KOLamybZmJvbQwHzHRJRTjp0Ieja2RqIanGIV6
+\unrestrict 7LCiK9putBfscxT1TcvDZrWcpASzZFtcidbhKNKm8WqSWkyAyIpdbDXYoUQN71O
 

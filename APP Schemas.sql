@@ -1461,6 +1461,30 @@ ALTER TABLE ONLY records.renting_records
 
 
 --
+-- 2e) Database indexes
+--
+
+-- Index 1:
+-- Speeds up common room-search filters in the UI and SQL queries by chain/area/category.
+-- Expected workload: frequent SELECT filters on hotel chain, city, and rating.
+CREATE INDEX IF NOT EXISTS idx_hotel_chain_city_rating
+    ON locations.hotel (chain_id, city, rating);
+
+-- Index 2:
+-- Speeds up candidate-room filtering once hotel is known, then by capacity and price.
+-- Expected workload: frequent SELECT filters for availability lists and sorting by price.
+CREATE INDEX IF NOT EXISTS idx_room_hotel_capacity_price
+    ON locations.room (hotel_id, capacity, price);
+
+-- Index 3:
+-- Speeds up overlap checks for active bookings used in availability and anti-double-booking logic.
+-- Expected workload: many reads for date-range checks; partial index reduces size and update cost.
+CREATE INDEX IF NOT EXISTS idx_booking_active_overlap
+    ON records.booking_records (hotel_id, room_number, start_date, end_date)
+    WHERE status = 'Active';
+
+
+--
 -- 2c) Database queries
 --
 

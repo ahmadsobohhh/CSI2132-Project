@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Hotel Databases... </title>
+    <style>
+:root {
+  --primary: hsl(213, 79%, 56%);
+  --light: hsl(181, 95%, 92%);
+}
+
+body {
+  margin: 2rem;
+}
+
+button {
+  background-image: linear-gradient(hsl(0 0% 100% / 0.85), transparent 10px),
+    linear-gradient(hsl(0 0% 100% / 0.25) 10px, transparent 10px),
+    radial-gradient(
+      circle at 10px 5px,
+      hsl(0 0% 100% / 0.25) 5px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 0px 5px,
+      hsl(0 0% 100% / 0.25) 5px,
+      transparent 5px
+    ),
+    linear-gradient(var(--primary), var(--light));
+  padding: 0.5em 3em;
+  background-size: 100%, calc(100% - 20px), 10px 10px, 10px 10px, 100%;
+  background-position: top, top center, top left, top right, center;
+  background-repeat: no-repeat;
+  border: 0;
+  border-radius: 100vw;
+  position: relative;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1px;
+  margin-inline: auto;
+  background: linear-gradient(hsl(240, 74%, 30%), hsl(0, 0%, 38%));
+  border-radius: 100vw;
+}
+</style>
+</head>
+<body> 
+    background-image: url("MirrorsEdgeBoxArtPS3.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        
+    <h1> Hotel Databases... </h1>  
+    
+    <form action="greet" method="post">
+        <label for="name">The Dates (Start):</label>
+        <input type="date" id="name" name="name" required>
+        <button type="submit">Submit</button>
+        <!--   add data to database... -->
+    </form>
+    <form action="greet" method="post">
+        <label for="name">The Dates (End):</label>
+        <input type="date" id="name" name="name" required>
+        <button type="submit">Submit</button>
+        <!--   add data to database... -->
+    </form>
+    <form action="greet" method="post">
+        <label for="name">Room capacity:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+        <!--   add data to database... -->
+    </form>
+    <form action="greet" method="post">
+        <label for="name">The area:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+        <!--   add data to database... -->
+    </form>
+    <form action="greet" method="post">
+        <label for="name">Category of the hotel:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+        <!--   add data to database... -->
+    </form>
+    <form action="greet" method="post">
+        <label for="name">Total number of rooms in the hotel:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+        <!--   add data to database... -->
+    </form>
+    <form action="greet" method="post">
+        <label for="name">The price of the rooms:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+        <!--   add data to database... -->
+    </form>
+    
+    <a href="HotelExplorationStaff.html" target="_blank"> <button>Staff/Employee Page... </button> </a>
+</body>
+</html>
+
+<!-- comment here <meta http-equiv="refresh" content="5; url=https://www.geeksforgeeks.org/community/" /> -->

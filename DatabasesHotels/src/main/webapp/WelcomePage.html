@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<style>
+:root {
+  --primary: hsl(213, 79%, 56%);
+  --light: hsl(181, 95%, 92%);
+}
+
+body {
+  margin: 2rem;
+}
+
+button {
+  background-image: linear-gradient(hsl(0 0% 100% / 0.85), transparent 10px),
+    linear-gradient(hsl(0 0% 100% / 0.25) 10px, transparent 10px),
+    radial-gradient(
+      circle at 10px 5px,
+      hsl(0 0% 100% / 0.25) 5px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 0px 5px,
+      hsl(0 0% 100% / 0.25) 5px,
+      transparent 5px
+    ),
+    linear-gradient(var(--primary), var(--light));
+  padding: 0.5em 3em;
+  background-size: 100%, calc(100% - 20px), 10px 10px, 10px 10px, 100%;
+  background-position: top, top center, top left, top right, center;
+  background-repeat: no-repeat;
+  border: 0;
+  border-radius: 100vw;
+  position: relative;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1px;
+  margin-inline: auto;
+  background: linear-gradient(hsl(240, 74%, 30%), hsl(0, 0%, 38%));
+  border-radius: 100vw;
+}
+</style>
+
+<body>
+
+<h2> Welcome to our hotel... </h2>
+<img src="Images/Habitat67.jpg" alt="Hotel... " width="600" height="300">
+
+<button onClick = "location.href = 'HotelExploration.html'">Hotel Views</button>
+<button>Cancel</button>
+
+</body>
+</html>
+
+<!-- <a href="#" class="mac-aqua-button aqua-button-blue">Details</a>
+<a href="#" class="mac-aqua-button aqua-button-grey">Cancel</a> -->

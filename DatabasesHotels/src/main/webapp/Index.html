@@ -1,106 +1,323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Hotel Databases... </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Databases</title>
     <style>
-:root {
-  --primary: hsl(213, 79%, 56%);
-  --light: hsl(181, 95%, 92%);
-}
+      body {
+        font-family: Arial, sans-serif;
+        margin: 24px;
+        line-height: 1.4;
+      }
+      h1 {
+        margin-bottom: 12px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px;
+        max-width: 900px;
+      }
+      label {
+        font-size: 0.9rem;
+        color: #222;
+      }
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px;
+        margin-top: 4px;
+      }
+      .actions {
+        margin: 14px 0;
+      }
+      button {
+        padding: 10px 14px;
+        border: 0;
+        border-radius: 6px;
+        background: #1565c0;
+        color: #fff;
+        cursor: pointer;
+      }
+      a {
+        color: #1565c0;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 12px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background: #f2f2f2;
+      }
+      #status {
+        margin-top: 10px;
+        font-weight: 600;
+      }
+      .quick-data {
+        margin: 12px 0 18px;
+        padding: 10px 12px;
+        border: 1px solid #d8d8d8;
+        border-radius: 8px;
+        background: #f8fafc;
+        max-width: 900px;
+      }
+      .quick-data h3 {
+        margin: 0 0 8px;
+      }
+      .quick-data p {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hotel Room Availability</h1>
 
-body {
-  margin: 2rem;
-}
+    <div class="quick-data">
+      <h3>Quick Test Data (Hardcoded)</h3>
+      <p><strong>Customers:</strong> 1, 2, 5</p>
+      <p><strong>Employees:</strong> 1, 11, 14</p>
+      <p><strong>Hotels:</strong> 6 (Fairmont), 12 (William), 19 (Arts)</p>
+      <p>
+        <strong>Room Pairs:</strong> (hotel 6, room 1), (hotel 12, room 1),
+        (hotel 19, room 1)
+      </p>
+    </div>
 
-button {
-  background-image: linear-gradient(hsl(0 0% 100% / 0.85), transparent 10px),
-    linear-gradient(hsl(0 0% 100% / 0.25) 10px, transparent 10px),
-    radial-gradient(
-      circle at 10px 5px,
-      hsl(0 0% 100% / 0.25) 5px,
-      transparent 5px
-    ),
-    radial-gradient(
-      circle at 0px 5px,
-      hsl(0 0% 100% / 0.25) 5px,
-      transparent 5px
-    ),
-    linear-gradient(var(--primary), var(--light));
-  padding: 0.5em 3em;
-  background-size: 100%, calc(100% - 20px), 10px 10px, 10px 10px, 100%;
-  background-position: top, top center, top left, top right, center;
-  background-repeat: no-repeat;
-  border: 0;
-  border-radius: 100vw;
-  position: relative;
-}
+    <div class="grid">
+      <label
+        >Start Date
+        <input type="date" id="startDate" required />
+      </label>
+      <label
+        >End Date
+        <input type="date" id="endDate" required />
+      </label>
+      <label
+        >Chain ID (optional)
+        <input type="number" id="chainId" placeholder="e.g. 1" />
+      </label>
+      <label
+        >City (optional)
+        <input type="text" id="city" placeholder="e.g. Montreal" />
+      </label>
+      <label
+        >Min Capacity (optional)
+        <input type="number" id="minCapacity" placeholder="e.g. 2" />
+      </label>
+      <label
+        >Max Price (optional)
+        <input type="number" step="0.01" id="maxPrice" placeholder="e.g. 300" />
+      </label>
+    </div>
 
-button::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -1px;
-  margin-inline: auto;
-  background: linear-gradient(hsl(240, 74%, 30%), hsl(0, 0%, 38%));
-  border-radius: 100vw;
-}
-</style>
-</head>
-<body> 
-    background-image: url("MirrorsEdgeBoxArtPS3.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        
-    <h1> Hotel Databases... </h1>  
-    
-    <form action="greet" method="post">
-        <label for="name">The Dates (Start):</label>
-        <input type="date" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">The Dates (End):</label>
-        <input type="date" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">Room capacity:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">The area:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">Category of the hotel:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">Total number of rooms in the hotel:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">The price of the rooms:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    
-    <a href="HotelExplorationStaff.html" target="_blank"> <button>Staff/Employee Page... </button> </a>
-</body>
+    <div class="actions">
+      <button id="searchBtn" type="button">Search Available Rooms</button>
+      <a href="HotelExplorationStaff.html" target="_blank"
+        >Staff/Employee Page</a
+      >
+    </div>
+
+    <h3>Create Booking</h3>
+    <div class="grid">
+      <label
+        >Customer ID
+        <input type="number" id="bookCustomerId" placeholder="e.g. 1" />
+      </label>
+      <label
+        >Hotel ID
+        <input type="number" id="bookHotelId" placeholder="e.g. 7" />
+      </label>
+      <label
+        >Room Number
+        <input type="number" id="bookRoomNumber" placeholder="e.g. 3" />
+      </label>
+      <label
+        >Start Date
+        <input type="date" id="bookStartDate" />
+      </label>
+      <label
+        >End Date
+        <input type="date" id="bookEndDate" />
+      </label>
+    </div>
+    <div class="actions">
+      <button id="bookBtn" type="button">Book This Room</button>
+    </div>
+
+    <div id="status"></div>
+
+    <table id="resultsTable" hidden>
+      <thead>
+        <tr>
+          <th>Hotel</th>
+          <th>City</th>
+          <th>Province</th>
+          <th>Hotel ID</th>
+          <th>Room #</th>
+          <th>Capacity</th>
+          <th>Price</th>
+          <th>View</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      const statusEl = document.getElementById("status");
+      const table = document.getElementById("resultsTable");
+      const tbody = table.querySelector("tbody");
+
+      function getVal(id) {
+        return document.getElementById(id).value.trim();
+      }
+
+      function renderRows(rows) {
+        tbody.innerHTML = "";
+        rows.forEach((row) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+          <td>${row.hotel_name ?? ""}</td>
+          <td>${row.city ?? ""}</td>
+          <td>${row.province ?? ""}</td>
+          <td>${row.hotel_id ?? ""}</td>
+          <td>${row.room_number ?? ""}</td>
+          <td>${row.capacity ?? ""}</td>
+          <td>${row.price ?? ""}</td>
+          <td>${row.view_type ?? ""}</td>
+          <td><button type="button" class="pick-room" data-hotel-id="${row.hotel_id ?? ""}" data-room-number="${row.room_number ?? ""}">Use This Room</button></td>
+        `;
+          tbody.appendChild(tr);
+        });
+        table.hidden = rows.length === 0;
+      }
+
+      async function searchRooms() {
+        const startDate = getVal("startDate");
+        const endDate = getVal("endDate");
+
+        if (!startDate || !endDate) {
+          statusEl.textContent = "Please provide start and end dates.";
+          table.hidden = true;
+          return;
+        }
+
+        statusEl.textContent = "Loading...";
+        table.hidden = true;
+
+        const body = new URLSearchParams({
+          startDate,
+          endDate,
+          chainId: getVal("chainId"),
+          city: getVal("city"),
+          minCapacity: getVal("minCapacity"),
+          maxPrice: getVal("maxPrice"),
+        });
+
+        try {
+          const response = await fetch("api/available-rooms.jsp", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body.toString(),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            statusEl.textContent = data.error || "Request failed.";
+            table.hidden = true;
+            return;
+          }
+
+          const rows = Array.isArray(data.rows) ? data.rows : [];
+          renderRows(rows);
+          statusEl.textContent = `Found ${rows.length} available room(s).`;
+        } catch (err) {
+          statusEl.textContent = "Connection error: " + err.message;
+          table.hidden = true;
+        }
+      }
+
+      async function createBooking() {
+        const customerId = getVal("bookCustomerId");
+        const hotelId = getVal("bookHotelId");
+        const roomNumber = getVal("bookRoomNumber");
+        const startDate = getVal("bookStartDate");
+        const endDate = getVal("bookEndDate");
+
+        if (!customerId || !hotelId || !roomNumber || !startDate || !endDate) {
+          statusEl.textContent = "Please fill all booking fields.";
+          return;
+        }
+
+        statusEl.textContent = "Creating booking...";
+
+        const body = new URLSearchParams({
+          action: "create_booking",
+          customer_id: customerId,
+          hotel_id: hotelId,
+          room_number: roomNumber,
+          start_date: startDate,
+          end_date: endDate,
+        });
+
+        try {
+          const response = await fetch("api/operations.jsp", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body.toString(),
+          });
+          const data = await response.json();
+          if (!response.ok || !data.ok) {
+            statusEl.textContent = data.error || "Booking failed.";
+            return;
+          }
+          if (data.booking_id != null) {
+            statusEl.textContent =
+              "Booking created successfully. Booking ID: " + data.booking_id;
+          } else {
+            statusEl.textContent = "Booking created successfully.";
+          }
+        } catch (err) {
+          statusEl.textContent = "Connection error: " + err.message;
+        }
+      }
+
+      tbody.addEventListener("click", (event) => {
+        const btn = event.target.closest(".pick-room");
+        if (!btn) return;
+
+        document.getElementById("bookHotelId").value =
+          btn.dataset.hotelId || "";
+        document.getElementById("bookRoomNumber").value =
+          btn.dataset.roomNumber || "";
+
+        const startDate = getVal("startDate");
+        const endDate = getVal("endDate");
+        if (startDate)
+          document.getElementById("bookStartDate").value = startDate;
+        if (endDate) document.getElementById("bookEndDate").value = endDate;
+
+        statusEl.textContent =
+          "Room selected. Enter Customer ID and click Book This Room.";
+      });
+
+      document
+        .getElementById("searchBtn")
+        .addEventListener("click", searchRooms);
+      document
+        .getElementById("bookBtn")
+        .addEventListener("click", createBooking);
+    </script>
+  </body>
 </html>
-
-<!-- comment here <meta http-equiv="refresh" content="5; url=https://www.geeksforgeeks.org/community/" /> -->

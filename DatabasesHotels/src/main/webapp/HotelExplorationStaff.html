@@ -1,65 +1,884 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Hotel Databases... </title>
-</head>
-<body>
-    <h1> Hotel Databases... </h1>
-    the dates (start, end) of booking or renting, the room capacity, the area, the
-hotel chain, the category of the hotel, the total number of rooms in the hotel, the price of the
-rooms.
-    <form action="greet" method="post">
-        <label for="name">The Dates (Start):</label>
-        <input type="date" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">The Dates (End):</label>
-        <input type="date" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">Room capacity:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">The area:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">Category of the hotel:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">Total number of rooms in the hotel:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">The price of the rooms:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <form action="greet" method="post">
-        <label for="name">Customer Payment... :</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
-        <!--   add data to database... -->
-    </form>
-    <a href="Index.html" target="_blank"> Guest Booking Page... </a>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Databases - Staff</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 24px;
+        line-height: 1.4;
+        background: #fafafa;
+        color: #1f1f1f;
+      }
+
+      .card {
+        max-width: 960px;
+        background: #fff;
+        border: 1px solid #e4e4e4;
+        border-radius: 10px;
+        padding: 18px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        margin-bottom: 14px;
+      }
+
+      h1,
+      h2 {
+        margin: 0 0 8px;
+      }
+
+      p {
+        margin-top: 0;
+        color: #4b4b4b;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      label {
+        font-size: 0.9rem;
+        color: #222;
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px;
+        margin-top: 4px;
+        border: 1px solid #cfcfcf;
+        border-radius: 6px;
+      }
+
+      .actions {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .status {
+        margin-top: 8px;
+        font-weight: 600;
+      }
+
+      .quick-data {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border: 1px solid #d8d8d8;
+        border-radius: 8px;
+        background: #f8fafc;
+      }
+      .quick-data p {
+        margin: 5px 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+      <div class="quick-data">
+        <p><strong>Quick Test Data (Hardcoded)</strong></p>
+        <p><strong>Customers:</strong> 1, 2, 5</p>
+        <p><strong>Employees:</strong> 1, 11, 14</p>
+        <p><strong>Hotels:</strong> 6, 12, 19</p>
+        <p><strong>Rooms:</strong> (6,1), (12,1), (19,1)</p>
+        <p><strong>Sample Booking IDs:</strong> 9, 10</p>
+        <p><strong>Sample Renting IDs:</strong> 2, 4</p>
+      </div>
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background: #f2f2f2;
+      }
+
+      button {
+        padding: 10px 14px;
+        border: 0;
+        border-radius: 6px;
+        background: #1565c0;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      a {
+        color: #1565c0;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Hotel Databases - Staff</h1>
+      <div class="actions">
+        <a href="Index.html" target="_blank">Guest Booking Page</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Booking to Renting</h2>
+      <div class="grid">
+        <label
+          >Booking ID
+          <input type="number" id="trBookingId" />
+        </label>
+        <label
+          >Employee ID
+          <input type="number" id="trEmployeeId" />
+        </label>
+        <label
+          >Payment Amount (optional)
+          <input type="number" id="trPayment" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="transformBtn">
+          Transform Booking to Renting
+        </button>
+      </div>
+      <div class="status" id="transformStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>Direct Renting + Payment Update</h2>
+      <div class="grid">
+        <label
+          >Customer ID
+          <input type="number" id="rentCustomerId" />
+        </label>
+        <label
+          >Hotel ID
+          <input type="number" id="rentHotelId" />
+        </label>
+        <label
+          >Room Number
+          <input type="number" id="rentRoomNumber" />
+        </label>
+        <label
+          >Employee ID
+          <input type="number" id="rentEmployeeId" />
+        </label>
+        <label
+          >Start Date
+          <input type="date" id="rentStartDate" />
+        </label>
+        <label
+          >End Date
+          <input type="date" id="rentEndDate" />
+        </label>
+        <label
+          >Payment Amount
+          <input type="number" id="rentPayment" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="rentBtn">Create Renting</button>
+      </div>
+
+      <div class="grid">
+        <label
+          >Renting ID
+          <input type="number" id="payRentingId" />
+        </label>
+        <label
+          >New Payment Amount
+          <input type="number" id="payAmount" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="paymentBtn">Insert/Update Payment</button>
+      </div>
+      <div class="status" id="rentStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>CRUD: Customer</h2>
+      <div class="grid">
+        <label
+          >Customer ID (for update/delete)
+          <input type="number" id="cCustomerId" />
+        </label>
+        <label
+          >First Name
+          <input type="text" id="cFirstName" />
+        </label>
+        <label
+          >Middle Name
+          <input type="text" id="cMiddleName" />
+        </label>
+        <label
+          >Last Name
+          <input type="text" id="cLastName" />
+        </label>
+        <label
+          >Street Number
+          <input type="number" id="cStreetNumber" />
+        </label>
+        <label
+          >Street Name
+          <input type="text" id="cStreetName" />
+        </label>
+        <label
+          >City
+          <input type="text" id="cCity" />
+        </label>
+        <label
+          >Province
+          <input type="text" id="cProvince" />
+        </label>
+        <label
+          >Postal Code
+          <input type="text" id="cPostalCode" />
+        </label>
+        <label
+          >ID Type
+          <select id="cIdType">
+            <option value="SIN">SIN</option>
+            <option value="SSN">SSN</option>
+            <option value="Driver">Driver</option>
+          </select>
+        </label>
+        <label
+          >ID Number
+          <input type="number" id="cIdNumber" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="createCustomerBtn">Create</button>
+        <button type="button" id="updateCustomerBtn">Update</button>
+        <button type="button" id="deleteCustomerBtn">Delete</button>
+      </div>
+      <div class="status" id="customerStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>CRUD: Employee</h2>
+      <div class="grid">
+        <label
+          >Employee ID (for update/delete)
+          <input type="number" id="eEmployeeId" />
+        </label>
+        <label
+          >Chain ID
+          <input type="number" id="eChainId" />
+        </label>
+        <label
+          >Hotel ID
+          <input type="number" id="eHotelId" />
+        </label>
+        <label
+          >First Name
+          <input type="text" id="eFirstName" />
+        </label>
+        <label
+          >Middle Name
+          <input type="text" id="eMiddleName" />
+        </label>
+        <label
+          >Last Name
+          <input type="text" id="eLastName" />
+        </label>
+        <label
+          >Street Number
+          <input type="number" id="eStreetNumber" />
+        </label>
+        <label
+          >Street Name
+          <input type="text" id="eStreetName" />
+        </label>
+        <label
+          >City
+          <input type="text" id="eCity" />
+        </label>
+        <label
+          >Province
+          <input type="text" id="eProvince" />
+        </label>
+        <label
+          >Postal Code
+          <input type="text" id="ePostalCode" />
+        </label>
+        <label
+          >SIN
+          <input type="number" id="eSin" />
+        </label>
+        <label
+          >Government ID
+          <select id="eGovernmentId">
+            <option value="">(none)</option>
+            <option value="SIN">SIN</option>
+            <option value="SSN">SSN</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="createEmployeeBtn">Create</button>
+        <button type="button" id="updateEmployeeBtn">Update</button>
+        <button type="button" id="deleteEmployeeBtn">Delete</button>
+      </div>
+      <div class="status" id="employeeStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>CRUD: Hotel</h2>
+      <div class="grid">
+        <label
+          >Hotel ID (for update/delete)
+          <input type="number" id="hHotelId" />
+        </label>
+        <label
+          >Chain ID
+          <input type="number" id="hChainId" />
+        </label>
+        <label
+          >Manager ID
+          <input type="number" id="hManagerId" />
+        </label>
+        <label
+          >Rating (0-10)
+          <input type="number" id="hRating" />
+        </label>
+        <label
+          >Name
+          <input type="text" id="hName" />
+        </label>
+        <label
+          >Street Number
+          <input type="number" id="hStreetNumber" />
+        </label>
+        <label
+          >Street Name
+          <input type="text" id="hStreetName" />
+        </label>
+        <label
+          >City
+          <input type="text" id="hCity" />
+        </label>
+        <label
+          >Province
+          <input type="text" id="hProvince" />
+        </label>
+        <label
+          >Postal Code
+          <input type="text" id="hPostalCode" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="createHotelBtn">Create</button>
+        <button type="button" id="updateHotelBtn">Update</button>
+        <button type="button" id="deleteHotelBtn">Delete</button>
+      </div>
+      <div class="status" id="hotelStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>CRUD: Room</h2>
+      <div class="grid">
+        <label
+          >Hotel ID
+          <input type="number" id="rHotelId" />
+        </label>
+        <label
+          >Room Number (for update/delete)
+          <input type="number" id="rRoomNumber" />
+        </label>
+        <label
+          >Price
+          <input type="number" id="rPrice" />
+        </label>
+        <label
+          >Capacity
+          <input type="number" id="rCapacity" />
+        </label>
+        <label
+          >View Type
+          <select id="rViewType">
+            <option value="Sea">Sea</option>
+            <option value="Mountain">Mountain</option>
+          </select>
+        </label>
+        <label
+          >Is Extendable
+          <select id="rIsExtendable">
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="createRoomBtn">Create</button>
+        <button type="button" id="updateRoomBtn">Update</button>
+        <button type="button" id="deleteRoomBtn">Delete</button>
+      </div>
+      <div class="status" id="roomStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>SQL Views (2f)</h2>
+      <div class="grid">
+        <label
+          >View
+          <select id="viewSelect">
+            <option value="city_available">locations.city_available</option>
+            <option value="hotel_capacity">locations.hotel_capacity</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="loadViewBtn">Load View</button>
+      </div>
+      <div class="status" id="viewStatus"></div>
+      <table id="viewTable" hidden>
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Archives</h2>
+      <div class="grid">
+        <label
+          >Archive Booking by Booking ID
+          <input type="number" id="archiveBookingId" />
+        </label>
+        <label
+          >Check-Out Renting by Renting ID
+          <input type="number" id="checkoutRentingId" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="archiveBookingBtn">Archive Booking</button>
+        <button type="button" id="checkoutRentingBtn">Check-Out Renting</button>
+      </div>
+      <div class="grid">
+        <label
+          >Archive Table
+          <select id="archiveSelect">
+            <option value="booking_archive">records.booking_archive</option>
+            <option value="renting_archive">records.renting_archive</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button type="button" id="loadArchiveBtn">Load Archive</button>
+      </div>
+      <div class="status" id="archiveStatus"></div>
+      <table id="archiveTable" hidden>
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script>
+      function getVal(id) {
+        return document.getElementById(id).value.trim();
+      }
+
+      function setStatus(id, text) {
+        document.getElementById(id).textContent = text;
+      }
+
+      async function postOperation(action, payload, statusId) {
+        setStatus(statusId, "Working...");
+        const body = new URLSearchParams({ action, ...payload });
+        try {
+          const res = await fetch("api/operations.jsp", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body.toString(),
+          });
+          const data = await res.json();
+          if (!res.ok || !data.ok) {
+            setStatus(statusId, data.error || "Operation failed.");
+            return;
+          }
+          let message = "Success. Rows changed: " + data.changed;
+          if (data.customer_id != null)
+            message += " | Customer ID: " + data.customer_id;
+          if (data.booking_id != null)
+            message += " | Booking ID: " + data.booking_id;
+          if (data.renting_id != null)
+            message += " | Renting ID: " + data.renting_id;
+          if (data.archive_id != null)
+            message += " | Archive ID: " + data.archive_id;
+          setStatus(statusId, message);
+        } catch (err) {
+          setStatus(statusId, "Connection error: " + err.message);
+        }
+      }
+
+      document.getElementById("transformBtn").addEventListener("click", () => {
+        postOperation(
+          "transform_booking_to_renting",
+          {
+            booking_id: getVal("trBookingId"),
+            employee_id: getVal("trEmployeeId"),
+            payment_amount: getVal("trPayment"),
+          },
+          "transformStatus",
+        );
+      });
+
+      document.getElementById("rentBtn").addEventListener("click", () => {
+        postOperation(
+          "create_renting",
+          {
+            customer_id: getVal("rentCustomerId"),
+            hotel_id: getVal("rentHotelId"),
+            room_number: getVal("rentRoomNumber"),
+            employee_id: getVal("rentEmployeeId"),
+            start_date: getVal("rentStartDate"),
+            end_date: getVal("rentEndDate"),
+            payment_amount: getVal("rentPayment"),
+          },
+          "rentStatus",
+        );
+      });
+
+      document.getElementById("paymentBtn").addEventListener("click", () => {
+        postOperation(
+          "add_payment",
+          {
+            renting_id: getVal("payRentingId"),
+            payment_amount: getVal("payAmount"),
+          },
+          "rentStatus",
+        );
+      });
+
+      document
+        .getElementById("createCustomerBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "create_customer",
+            {
+              first_name: getVal("cFirstName"),
+              middle_name: getVal("cMiddleName"),
+              last_name: getVal("cLastName"),
+              street_number: getVal("cStreetNumber"),
+              street_name: getVal("cStreetName"),
+              city: getVal("cCity"),
+              province: getVal("cProvince"),
+              postal_code: getVal("cPostalCode"),
+              id_type: getVal("cIdType"),
+              id_number: getVal("cIdNumber"),
+            },
+            "customerStatus",
+          );
+        });
+      document
+        .getElementById("updateCustomerBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "update_customer",
+            {
+              customer_id: getVal("cCustomerId"),
+              first_name: getVal("cFirstName"),
+              middle_name: getVal("cMiddleName"),
+              last_name: getVal("cLastName"),
+              street_number: getVal("cStreetNumber"),
+              street_name: getVal("cStreetName"),
+              city: getVal("cCity"),
+              province: getVal("cProvince"),
+              postal_code: getVal("cPostalCode"),
+            },
+            "customerStatus",
+          );
+        });
+      document
+        .getElementById("deleteCustomerBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "delete_customer",
+            { customer_id: getVal("cCustomerId") },
+            "customerStatus",
+          );
+        });
+
+      document
+        .getElementById("createEmployeeBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "create_employee",
+            {
+              chain_id: getVal("eChainId"),
+              hotel_id: getVal("eHotelId"),
+              first_name: getVal("eFirstName"),
+              middle_name: getVal("eMiddleName"),
+              last_name: getVal("eLastName"),
+              street_number: getVal("eStreetNumber"),
+              street_name: getVal("eStreetName"),
+              city: getVal("eCity"),
+              province: getVal("eProvince"),
+              postal_code: getVal("ePostalCode"),
+              sin: getVal("eSin"),
+              government_id: getVal("eGovernmentId"),
+            },
+            "employeeStatus",
+          );
+        });
+      document
+        .getElementById("updateEmployeeBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "update_employee",
+            {
+              employee_id: getVal("eEmployeeId"),
+              chain_id: getVal("eChainId"),
+              hotel_id: getVal("eHotelId"),
+              first_name: getVal("eFirstName"),
+              middle_name: getVal("eMiddleName"),
+              last_name: getVal("eLastName"),
+              street_number: getVal("eStreetNumber"),
+              street_name: getVal("eStreetName"),
+              city: getVal("eCity"),
+              province: getVal("eProvince"),
+              postal_code: getVal("ePostalCode"),
+            },
+            "employeeStatus",
+          );
+        });
+      document
+        .getElementById("deleteEmployeeBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "delete_employee",
+            { employee_id: getVal("eEmployeeId") },
+            "employeeStatus",
+          );
+        });
+
+      document
+        .getElementById("createHotelBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "create_hotel",
+            {
+              chain_id: getVal("hChainId"),
+              manager_id: getVal("hManagerId"),
+              rating: getVal("hRating"),
+              name: getVal("hName"),
+              street_number: getVal("hStreetNumber"),
+              street_name: getVal("hStreetName"),
+              city: getVal("hCity"),
+              province: getVal("hProvince"),
+              postal_code: getVal("hPostalCode"),
+            },
+            "hotelStatus",
+          );
+        });
+      document
+        .getElementById("updateHotelBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "update_hotel",
+            {
+              hotel_id: getVal("hHotelId"),
+              chain_id: getVal("hChainId"),
+              manager_id: getVal("hManagerId"),
+              rating: getVal("hRating"),
+              name: getVal("hName"),
+              street_number: getVal("hStreetNumber"),
+              street_name: getVal("hStreetName"),
+              city: getVal("hCity"),
+              province: getVal("hProvince"),
+              postal_code: getVal("hPostalCode"),
+            },
+            "hotelStatus",
+          );
+        });
+      document
+        .getElementById("deleteHotelBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "delete_hotel",
+            { hotel_id: getVal("hHotelId") },
+            "hotelStatus",
+          );
+        });
+
+      document.getElementById("createRoomBtn").addEventListener("click", () => {
+        postOperation(
+          "create_room",
+          {
+            hotel_id: getVal("rHotelId"),
+            price: getVal("rPrice"),
+            capacity: getVal("rCapacity"),
+            view_type: getVal("rViewType"),
+            is_extendable: getVal("rIsExtendable"),
+          },
+          "roomStatus",
+        );
+      });
+      document.getElementById("updateRoomBtn").addEventListener("click", () => {
+        postOperation(
+          "update_room",
+          {
+            hotel_id: getVal("rHotelId"),
+            room_number: getVal("rRoomNumber"),
+            price: getVal("rPrice"),
+            capacity: getVal("rCapacity"),
+            view_type: getVal("rViewType"),
+            is_extendable: getVal("rIsExtendable"),
+          },
+          "roomStatus",
+        );
+      });
+      document.getElementById("deleteRoomBtn").addEventListener("click", () => {
+        postOperation(
+          "delete_room",
+          {
+            hotel_id: getVal("rHotelId"),
+            room_number: getVal("rRoomNumber"),
+          },
+          "roomStatus",
+        );
+      });
+
+      function renderViewRows(rows) {
+        const table = document.getElementById("viewTable");
+        const thead = table.querySelector("thead");
+        const tbody = table.querySelector("tbody");
+        tbody.innerHTML = "";
+        if (!rows.length) {
+          table.hidden = true;
+          return;
+        }
+        const headers = Object.keys(rows[0]);
+        thead.innerHTML =
+          "<tr>" + headers.map((h) => "<th>" + h + "</th>").join("") + "</tr>";
+        rows.forEach((r) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = headers
+            .map((h) => "<td>" + (r[h] ?? "") + "</td>")
+            .join("");
+          tbody.appendChild(tr);
+        });
+        table.hidden = false;
+      }
+
+      function renderArchiveRows(rows) {
+        const table = document.getElementById("archiveTable");
+        const thead = table.querySelector("thead");
+        const tbody = table.querySelector("tbody");
+        tbody.innerHTML = "";
+        if (!rows.length) {
+          table.hidden = true;
+          return;
+        }
+        const headers = Object.keys(rows[0]);
+        thead.innerHTML =
+          "<tr>" + headers.map((h) => "<th>" + h + "</th>").join("") + "</tr>";
+        rows.forEach((r) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = headers
+            .map((h) => "<td>" + (r[h] ?? "") + "</td>")
+            .join("");
+          tbody.appendChild(tr);
+        });
+        table.hidden = false;
+      }
+
+      document
+        .getElementById("loadViewBtn")
+        .addEventListener("click", async () => {
+          const statusId = "viewStatus";
+          setStatus(statusId, "Loading view...");
+          const body = new URLSearchParams({
+            view: getVal("viewSelect"),
+          });
+          try {
+            const res = await fetch("api/views.jsp", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: body.toString(),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+              setStatus(statusId, data.error || "View load failed.");
+              document.getElementById("viewTable").hidden = true;
+              return;
+            }
+            const rows = Array.isArray(data.rows) ? data.rows : [];
+            renderViewRows(rows);
+            setStatus(
+              statusId,
+              "Loaded " + rows.length + " row(s) from " + data.view + ".",
+            );
+          } catch (err) {
+            setStatus(statusId, "Connection error: " + err.message);
+          }
+        });
+
+      document
+        .getElementById("archiveBookingBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "archive_booking",
+            {
+              booking_id: getVal("archiveBookingId"),
+            },
+            "archiveStatus",
+          );
+        });
+
+      document
+        .getElementById("checkoutRentingBtn")
+        .addEventListener("click", () => {
+          postOperation(
+            "checkout_renting",
+            {
+              renting_id: getVal("checkoutRentingId"),
+            },
+            "archiveStatus",
+          );
+        });
+
+      document
+        .getElementById("loadArchiveBtn")
+        .addEventListener("click", async () => {
+          const statusId = "archiveStatus";
+          setStatus(statusId, "Loading archive...");
+          const body = new URLSearchParams({
+            view: getVal("archiveSelect"),
+          });
+          try {
+            const res = await fetch("api/views.jsp", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: body.toString(),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+              setStatus(statusId, data.error || "Archive load failed.");
+              document.getElementById("archiveTable").hidden = true;
+              return;
+            }
+            const rows = Array.isArray(data.rows) ? data.rows : [];
+            renderArchiveRows(rows);
+            setStatus(
+              statusId,
+              "Loaded " + rows.length + " row(s) from " + data.view + ".",
+            );
+          } catch (err) {
+            setStatus(statusId, "Connection error: " + err.message);
+          }
+        });
+    </script>
+  </body>
 </html>
 
 <!-- comment here <meta http-equiv="refresh" content="5; url=https://www.geeksforgeeks.org/community/" /> -->

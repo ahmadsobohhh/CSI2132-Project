@@ -413,10 +413,13 @@ CREATE FUNCTION records.transformrecord() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 	begin
-		Insert into records.booking_records(room_number, hotel_id, start_date, end_date, status) 
-		values (NEW.room_number, NEW.hotel_id, NEW.start_date, NEW.end_date, 'Transformed')
-		on conflict (room_number, hotel_id)		
-		do update set status = 'Transformed';
+        UPDATE records.booking_records
+        SET status = 'Transformed'
+        WHERE room_number = NEW.room_number
+          AND hotel_id = NEW.hotel_id
+          AND start_date = NEW.start_date
+          AND end_date = NEW.end_date
+          AND status = 'Active';
 		return NEW;
 	end;
 $$;
